@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_file_identity",
+  "category": "file/object identity",
+  "title": "Path permission check followed by path write",
+  "description": "A workflow checks whether a path is allowed, then writes through a mutable path name.",
+  "resource": "path",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "file_identity.check_path_allowed",
+      "effect_contract": "file_identity.write_by_path",
+      "expected_result": "candidate_risk",
+      "mutation": "replace checked path target before write",
+      "repair_obligation": "use stable file handle or capability from the checked object",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "file_identity.check_path_allowed",
+      "effect_contract": "file_identity.write_by_handle",
+      "expected_result": "protected",
+      "mutation": "replace checked path target before write",
+      "repair_obligation": "stable identity binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "file_identity.check_path_allowed",
+      "effect_contract": "file_identity.write_by_handle",
+      "expected_result": "safe_near_miss",
+      "mutation": "replace unchecked alias path",
+      "repair_obligation": "no repair required because effect uses stable checked identity",
+      "representations": ["langgraph_source"]
+    }
+  ]
+}

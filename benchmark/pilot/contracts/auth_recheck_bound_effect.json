@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "auth_recheck.export_with_recheck",
+  "operation": "effect",
+  "resource_argument": "principal_resource",
+  "predicate": null,
+  "binding_mechanisms": ["revalidation"],
+  "authority_behavior": "enforced",
+  "effect_category": "export",
+  "safety_oracle": "permission_still_granted"
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "file_identity.write_by_path",
+  "operation": "effect",
+  "resource_argument": "path",
+  "predicate": null,
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown",
+  "effect_category": "write_file",
+  "safety_oracle": "writes_checked_object"
+}

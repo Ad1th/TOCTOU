@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "contract_id": "http_etag.purchase_with_if_match",
+  "operation": "effect",
+  "resource_argument": "item_url",
+  "predicate": null,
+  "binding_mechanisms": ["version"],
+  "authority_behavior": "enforced",
+  "version_argument": "if_match",
+  "effect_category": "purchase",
+  "safety_oracle": "price_not_above_limit"
+}

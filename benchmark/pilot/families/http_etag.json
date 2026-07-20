@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_http_etag",
+  "category": "HTTP-like resources",
+  "title": "Quote check followed by purchase",
+  "description": "A workflow accepts a quoted price, then purchases after the server-side price may change.",
+  "resource": "item_url",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "http_etag.get_quote",
+      "effect_contract": "http_etag.purchase_without_if_match",
+      "expected_result": "candidate_risk",
+      "mutation": "raise quoted price before purchase",
+      "repair_obligation": "send the checked ETag as an enforced conditional request",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "http_etag.get_quote",
+      "effect_contract": "http_etag.purchase_with_if_match",
+      "expected_result": "protected",
+      "mutation": "raise quoted price before purchase",
+      "repair_obligation": "version binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "http_etag.get_quote",
+      "effect_contract": "http_etag.purchase_with_if_match",
+      "expected_result": "safe_near_miss",
+      "mutation": "change non-price metadata",
+      "repair_obligation": "no repair required because safety predicate remains true",
+      "representations": ["mcp_trace"]
+    }
+  ]
+}

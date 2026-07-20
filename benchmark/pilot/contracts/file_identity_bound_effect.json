@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "file_identity.write_by_handle",
+  "operation": "effect",
+  "resource_argument": "handle",
+  "predicate": null,
+  "binding_mechanisms": ["stable_identity"],
+  "authority_behavior": "enforced",
+  "effect_category": "write_file",
+  "safety_oracle": "writes_checked_object"
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_kv_version",
+  "category": "versioned key-value state",
+  "title": "Balance check followed by debit",
+  "description": "A workflow reads a versioned balance, checks sufficiency, and later debits the account.",
+  "resource": "key",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "kv_version.read_balance",
+      "effect_contract": "kv_version.debit_without_cas",
+      "expected_result": "candidate_risk",
+      "mutation": "decrease balance after the read and before debit",
+      "repair_obligation": "pass the checked version as an enforced compare-and-swap precondition",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "kv_version.read_balance",
+      "effect_contract": "kv_version.debit_with_cas",
+      "expected_result": "protected",
+      "mutation": "decrease balance after the read and before debit",
+      "repair_obligation": "version binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "kv_version.read_balance",
+      "effect_contract": "kv_version.debit_with_cas",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify a different key",
+      "repair_obligation": "no repair required because resource alias does not match",
+      "representations": ["langgraph_source"]
+    }
+  ]
+}

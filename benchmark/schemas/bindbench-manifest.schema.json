@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentlint.local/schemas/bindbench-manifest.schema.json",
+  "title": "BindBench Scenario Family Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "family_id",
+    "category",
+    "title",
+    "description",
+    "resource",
+    "variants"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "family_id": { "type": "string", "minLength": 1 },
+    "category": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "resource": { "type": "string", "minLength": 1 },
+    "variants": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "check_contract",
+          "effect_contract",
+          "expected_result",
+          "mutation",
+          "repair_obligation",
+          "representations"
+        ],
+        "properties": {
+          "kind": { "enum": ["vulnerable", "repaired", "safe_near_miss"] },
+          "check_contract": { "type": "string", "minLength": 1 },
+          "effect_contract": { "type": "string", "minLength": 1 },
+          "expected_result": { "type": "string", "minLength": 1 },
+          "mutation": { "type": "string", "minLength": 1 },
+          "repair_obligation": { "type": "string", "minLength": 1 },
+          "representations": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

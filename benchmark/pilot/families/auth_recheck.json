@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_auth_recheck",
+  "category": "authorization",
+  "title": "Permission check followed by export",
+  "description": "A workflow checks access permission, then exports data after permission may be revoked.",
+  "resource": "principal_resource",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "auth_recheck.check_permission",
+      "effect_contract": "auth_recheck.export_without_recheck",
+      "expected_result": "candidate_risk",
+      "mutation": "revoke permission before export",
+      "repair_obligation": "revalidate permission at the enforcing authority immediately before export",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "auth_recheck.check_permission",
+      "effect_contract": "auth_recheck.export_with_recheck",
+      "expected_result": "protected",
+      "mutation": "revoke permission before export",
+      "repair_obligation": "revalidation binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "auth_recheck.check_permission",
+      "effect_contract": "auth_recheck.export_with_recheck",
+      "expected_result": "safe_near_miss",
+      "mutation": "revoke permission for another principal",
+      "repair_obligation": "no repair required because affected principal-resource pair differs",
+      "representations": ["mcp_trace"]
+    }
+  ]
+}

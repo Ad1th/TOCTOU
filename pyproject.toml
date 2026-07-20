@@ -20,8 +20,8 @@ dev = [
   "ruff>=0.8.0",
 ]
 
-[tool.setuptools]
-packages = ["agentlint"]
+[tool.setuptools.packages.find]
+include = ["agentlint*", "experiments*", "scripts*"]
 
 [tool.setuptools.package-data]
 agentlint = ["py.typed"]
@@ -43,7 +43,7 @@ known-first-party = ["agentlint"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-files = ["agentlint", "experiments", "tests"]
+files = ["agentlint", "experiments", "scripts", "tests"]
 warn_unused_configs = true
 
 [tool.pytest.ini_options]

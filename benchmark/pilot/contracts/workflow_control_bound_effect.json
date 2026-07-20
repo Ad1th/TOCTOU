@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "workflow_control.complete_under_lock",
+  "operation": "effect",
+  "resource_argument": "task_id",
+  "predicate": null,
+  "binding_mechanisms": ["synchronization"],
+  "authority_behavior": "enforced",
+  "effect_category": "complete_task",
+  "safety_oracle": "task_ready_at_completion"
+}

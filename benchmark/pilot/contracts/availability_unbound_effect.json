@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "availability.reserve_without_condition",
+  "operation": "effect",
+  "resource_argument": "sku",
+  "predicate": null,
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown",
+  "effect_category": "reserve_stock",
+  "safety_oracle": "stock_not_negative"
+}

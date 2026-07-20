@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "contract_id": "workflow_control.check_task_ready",
+  "operation": "check",
+  "resource_argument": "task_id",
+  "predicate": "task_ready",
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown"
+}

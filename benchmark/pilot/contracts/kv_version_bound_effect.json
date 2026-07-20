@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "contract_id": "kv_version.debit_with_cas",
+  "operation": "effect",
+  "resource_argument": "key",
+  "predicate": null,
+  "binding_mechanisms": ["version"],
+  "authority_behavior": "enforced",
+  "version_argument": "expected_version",
+  "effect_category": "debit",
+  "safety_oracle": "no_overdraft"
+}

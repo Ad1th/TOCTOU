@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_availability",
+  "category": "value/availability",
+  "title": "Stock check followed by reservation",
+  "description": "A workflow checks stock availability, then reserves inventory after stock may be consumed.",
+  "resource": "sku",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "availability.check_stock",
+      "effect_contract": "availability.reserve_without_condition",
+      "expected_result": "candidate_risk",
+      "mutation": "consume remaining stock before reservation",
+      "repair_obligation": "perform reservation as an atomic conditional operation",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "availability.check_stock",
+      "effect_contract": "availability.reserve_atomically",
+      "expected_result": "protected",
+      "mutation": "consume remaining stock before reservation",
+      "repair_obligation": "atomic binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "availability.check_stock",
+      "effect_contract": "availability.reserve_atomically",
+      "expected_result": "safe_near_miss",
+      "mutation": "increase stock before reservation",
+      "repair_obligation": "no repair required because mutation cannot violate stock invariant",
+      "representations": ["langgraph_source"]
+    }
+  ]
+}

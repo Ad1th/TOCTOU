@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_workflow_control",
+  "category": "workflow control",
+  "title": "Ready check followed by callback-delayed completion",
+  "description": "A workflow checks that a task is ready, waits across a callback gap, and later completes it.",
+  "resource": "task_id",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "workflow_control.check_task_ready",
+      "effect_contract": "workflow_control.complete_after_callback",
+      "expected_result": "candidate_risk",
+      "mutation": "mark task blocked during callback gap",
+      "repair_obligation": "hold synchronization or revalidate readiness before completion",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "workflow_control.check_task_ready",
+      "effect_contract": "workflow_control.complete_under_lock",
+      "expected_result": "protected",
+      "mutation": "mark task blocked during callback gap",
+      "repair_obligation": "synchronization binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "workflow_control.check_task_ready",
+      "effect_contract": "workflow_control.complete_under_lock",
+      "expected_result": "safe_near_miss",
+      "mutation": "mark unrelated task blocked",
+      "repair_obligation": "no repair required because synchronized effect targets checked task",
+      "representations": ["mcp_trace"]
+    }
+  ]
+}
