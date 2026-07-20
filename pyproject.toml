@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentlint"
+version = "0.1.0"
+description = "Reproducible analysis foundation for agent tool workflow binding risks."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "AgentLint Contributors" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "black>=24.10.0",
+  "mypy>=1.13.0",
+  "pytest>=8.3.0",
+  "ruff>=0.8.0",
+]
+
+[tool.setuptools]
+packages = ["agentlint"]
+
+[tool.setuptools.package-data]
+agentlint = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "C4", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["agentlint"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["agentlint", "experiments", "tests"]
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = ["."]
