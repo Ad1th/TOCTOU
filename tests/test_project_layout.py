@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import tomllib
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -51,7 +51,9 @@ def test_required_project_directories_exist() -> None:
 
 def test_required_foundation_files_exist() -> None:
     """M0 creates every required foundation file."""
-    missing_files = [file_name for file_name in REQUIRED_FILES if not (PROJECT_ROOT / file_name).is_file()]
+    missing_files = [
+        file_name for file_name in REQUIRED_FILES if not (PROJECT_ROOT / file_name).is_file()
+    ]
 
     assert not missing_files
 
