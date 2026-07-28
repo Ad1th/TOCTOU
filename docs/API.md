@@ -27,3 +27,12 @@
 - `Workflow.predecessors(node_id)`: direct predecessor lookup in edge order.
 - `Workflow.successors(node_id)`: direct successor lookup in edge order.
 - `Workflow.topological_order()`: deterministic topological ordering for acyclic workflows.
+
+## M2.2 Dependency Propagation
+
+- `agentlint.ir.propagate_dependencies(workflow)`: computes propagated resource and binding state over an acyclic workflow.
+- `agentlint.ir.DependencyGraph`: immutable dependency-state API for a workflow.
+- `DependencyGraph.state_for(node_id)`: propagated state lookup.
+- `DependencyGraph.resources_at(node_id)`: propagated resources at a node.
+- `DependencyGraph.bindings_at(node_id)`: propagated bindings at a node.
+- `DependencyGraph.dependencies_of(node_id)`: resource dependency relationships for a node.
