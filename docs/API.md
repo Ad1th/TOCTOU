@@ -14,3 +14,16 @@
 
 - `agentlint.annotations.load_annotation_set(path)`: loads a pilot annotation JSON file.
 - `agentlint.annotations.cohen_kappa(left, right)`: computes Cohen's kappa over paired annotation labels.
+
+## M2.1 Workflow IR
+
+- `agentlint.ir.Workflow`: immutable directed workflow graph.
+- `agentlint.ir.Node`: immutable workflow node with optional `ToolContract` attachment.
+- `agentlint.ir.Edge`: immutable directed edge between node IDs.
+- `agentlint.ir.ResourceReference`: normalized resource reference carried by a node.
+- `agentlint.ir.BindingReference`: modeled binding mechanism carried by a node.
+- `agentlint.ir.FindingLocation`: provenance handle for later finding APIs.
+- `Workflow.node(node_id)`: deterministic node lookup.
+- `Workflow.predecessors(node_id)`: direct predecessor lookup in edge order.
+- `Workflow.successors(node_id)`: direct successor lookup in edge order.
+- `Workflow.topological_order()`: deterministic topological ordering for acyclic workflows.
