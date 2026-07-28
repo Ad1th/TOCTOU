@@ -8,6 +8,13 @@ from agentlint.ir.dependencies import (
     PropagatedResource,
     propagate_dependencies,
 )
+from agentlint.ir.findings import (
+    Finding,
+    FindingKind,
+    MissingBinding,
+    RepairObligationId,
+    generate_findings,
+)
 from agentlint.ir.models import (
     BindingReference,
     Edge,
@@ -28,9 +35,12 @@ __all__ = [
     "DependencyRelationship",
     "Edge",
     "EdgeKind",
+    "Finding",
+    "FindingKind",
     "FindingLocation",
     "GraphCycleError",
     "GraphValidationError",
+    "MissingBinding",
     "Node",
     "NodeDependencyState",
     "NodeKind",
@@ -38,6 +48,8 @@ __all__ = [
     "PropagatedResource",
     "ResourceReference",
     "ResourceType",
+    "RepairObligationId",
     "Workflow",
+    "generate_findings",
     "propagate_dependencies",
 ]

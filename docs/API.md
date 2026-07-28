@@ -36,3 +36,11 @@
 - `DependencyGraph.resources_at(node_id)`: propagated resources at a node.
 - `DependencyGraph.bindings_at(node_id)`: propagated bindings at a node.
 - `DependencyGraph.dependencies_of(node_id)`: resource dependency relationships for a node.
+
+## M2.3 Finding Generation
+
+- `agentlint.ir.generate_findings(workflow, dependency_graph=None)`: emits deterministic missing-binding findings from dependency relationships.
+- `agentlint.ir.Finding`: immutable finding record with resource, check node, effect node, missing binding, location, and repair obligation identifier.
+- `agentlint.ir.FindingKind`: typed finding category.
+- `agentlint.ir.MissingBinding`: typed missing-binding relationship.
+- `agentlint.ir.RepairObligationId`: typed repair obligation identifier.
