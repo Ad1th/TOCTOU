@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "workflows": [
+    {
+      "workflow_id": "pilot_auth_recheck_repaired",
+      "family_id": "pilot_auth_recheck",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "auth_recheck.check_permission", "resources": [{"resource_id": "principal_resource:alice:report", "argument_name": "principal_resource", "resource_type": "authority"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "auth_recheck.export_with_recheck", "bindings": [{"mechanism": "revalidation", "contract_id": "auth_recheck.export_with_recheck", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_auth_recheck_safe_near_miss",
+      "family_id": "pilot_auth_recheck",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "auth_recheck.check_permission", "resources": [{"resource_id": "principal_resource:alice:report", "argument_name": "principal_resource", "resource_type": "authority"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "auth_recheck.export_with_recheck", "bindings": [{"mechanism": "revalidation", "contract_id": "auth_recheck.export_with_recheck", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_auth_recheck_vulnerable",
+      "family_id": "pilot_auth_recheck",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "auth_recheck.check_permission", "resources": [{"resource_id": "principal_resource:alice:report", "argument_name": "principal_resource", "resource_type": "authority"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "auth_recheck.export_without_recheck"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_availability_repaired",
+      "family_id": "pilot_availability",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "availability.check_stock", "resources": [{"resource_id": "sku:book-1", "argument_name": "sku", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "availability.reserve_atomically", "bindings": [{"mechanism": "atomic", "contract_id": "availability.reserve_atomically", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_availability_safe_near_miss",
+      "family_id": "pilot_availability",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "availability.check_stock", "resources": [{"resource_id": "sku:book-1", "argument_name": "sku", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "availability.reserve_atomically", "bindings": [{"mechanism": "atomic", "contract_id": "availability.reserve_atomically", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_availability_vulnerable",
+      "family_id": "pilot_availability",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "availability.check_stock", "resources": [{"resource_id": "sku:book-1", "argument_name": "sku", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "availability.reserve_without_condition"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_file_identity_repaired",
+      "family_id": "pilot_file_identity",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "file_identity.check_path_allowed", "resources": [{"resource_id": "file:/tmp/report.txt", "argument_name": "path", "resource_type": "file", "identity": "inode:100"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "file_identity.write_by_handle", "bindings": [{"mechanism": "stable_identity", "contract_id": "file_identity.write_by_handle", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_file_identity_safe_near_miss",
+      "family_id": "pilot_file_identity",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "file_identity.check_path_allowed", "resources": [{"resource_id": "file:/tmp/report.txt", "argument_name": "path", "resource_type": "file", "identity": "inode:100"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "file_identity.write_by_handle", "bindings": [{"mechanism": "stable_identity", "contract_id": "file_identity.write_by_handle", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_file_identity_vulnerable",
+      "family_id": "pilot_file_identity",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "file_identity.check_path_allowed", "resources": [{"resource_id": "file:/tmp/report.txt", "argument_name": "path", "resource_type": "file"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "file_identity.write_by_path"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_http_etag_repaired",
+      "family_id": "pilot_http_etag",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "http_etag.get_quote", "resources": [{"resource_id": "https://shop/item/1", "argument_name": "item_url", "resource_type": "http"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "http_etag.purchase_with_if_match", "bindings": [{"mechanism": "version", "contract_id": "http_etag.purchase_with_if_match", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_http_etag_safe_near_miss",
+      "family_id": "pilot_http_etag",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "http_etag.get_quote", "resources": [{"resource_id": "https://shop/item/1", "argument_name": "item_url", "resource_type": "http"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "http_etag.purchase_with_if_match", "bindings": [{"mechanism": "version", "contract_id": "http_etag.purchase_with_if_match", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_http_etag_vulnerable",
+      "family_id": "pilot_http_etag",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "http_etag.get_quote", "resources": [{"resource_id": "https://shop/item/1", "argument_name": "item_url", "resource_type": "http"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "http_etag.purchase_without_if_match"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_kv_version_repaired",
+      "family_id": "pilot_kv_version",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "kv_version.read_balance", "resources": [{"resource_id": "account:123", "argument_name": "key", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "kv_version.debit_with_cas", "bindings": [{"mechanism": "version", "contract_id": "kv_version.debit_with_cas", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_kv_version_safe_near_miss",
+      "family_id": "pilot_kv_version",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "kv_version.read_balance", "resources": [{"resource_id": "account:123", "argument_name": "key", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "kv_version.debit_with_cas", "bindings": [{"mechanism": "version", "contract_id": "kv_version.debit_with_cas", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_kv_version_vulnerable",
+      "family_id": "pilot_kv_version",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "kv_version.read_balance", "resources": [{"resource_id": "account:123", "argument_name": "key", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "kv_version.debit_without_cas"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_workflow_control_repaired",
+      "family_id": "pilot_workflow_control",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "workflow_control.check_task_ready", "resources": [{"resource_id": "task:42", "argument_name": "task_id", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "workflow_control.complete_under_lock", "bindings": [{"mechanism": "synchronization", "contract_id": "workflow_control.complete_under_lock", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_workflow_control_safe_near_miss",
+      "family_id": "pilot_workflow_control",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "workflow_control.check_task_ready", "resources": [{"resource_id": "task:42", "argument_name": "task_id", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "workflow_control.complete_under_lock", "bindings": [{"mechanism": "synchronization", "contract_id": "workflow_control.complete_under_lock", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_workflow_control_vulnerable",
+      "family_id": "pilot_workflow_control",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "workflow_control.check_task_ready", "resources": [{"resource_id": "task:42", "argument_name": "task_id", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "workflow_control.complete_after_callback"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    }
+  ]
+}

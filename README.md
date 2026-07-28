@@ -2,7 +2,7 @@
 
 AgentLint is a reproducible engineering framework for evaluating check–effect binding risks in supported LLM-agent tool workflows.
 
-This repository currently contains **M0 — Foundation** only. It provides project conventions, quality tooling, CI, a structured logging utility, and a deterministic experiment template. It does not yet implement contracts, workflow parsing, analysis, validation, or benchmark cases.
+This repository contains the current prototype implementation: tool contracts, pilot benchmark schemas and annotations, workflow IR, dependency propagation, finding generation, and an evaluation runner over local JSON workflow fixtures.
 
 ## Requirements
 
@@ -15,6 +15,33 @@ python -m pip install -e ".[dev]"
 ruff check .
 black --check .
 mypy .
+pytest
+```
+
+## Evaluation
+
+Run the local pilot evaluation from the repository root:
+
+```bash
+python -m scripts.run_evaluation
+```
+
+The command analyzes every workflow fixture in `examples/workflows/` using the existing IR, dependency propagation, and finding generator. It compares analyzer output against `benchmark/pilot/annotations/annotator_a.json`.
+
+Expected outputs:
+
+- `results/findings/*.json`: per-workflow structured findings.
+- `results/metrics/summary.json`: TP, FP, FN, precision, recall, F1, workflow count, finding count, and runtime.
+- `results/metrics/summary.csv`: metric summary in CSV form.
+- `results/tables/summary.csv`: publication-ready workflow summary table.
+- `results/figures/README.md`: placeholder for future generated figures.
+- `results/logs/experiment.log`: deterministic evaluation log structure.
+
+Reproduction steps:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m scripts.run_evaluation
 pytest
 ```
 
