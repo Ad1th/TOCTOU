@@ -1,0 +1,9 @@
+{
+  "expected_label": "safe_near_miss",
+  "family_id": "pilot_cloud_generation",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "safe_near_miss",
+  "workflow_id": "pilot_cloud_generation_safe_near_miss"
+}
