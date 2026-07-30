@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "payment_revalidation.capture_with_revalidation",
+  "operation": "effect",
+  "resource_argument": "payment_id",
+  "predicate": null,
+  "binding_mechanisms": ["revalidation"],
+  "authority_behavior": "enforced",
+  "effect_category": "capture_payment",
+  "safety_oracle": "authorization_valid_at_capture"
+}

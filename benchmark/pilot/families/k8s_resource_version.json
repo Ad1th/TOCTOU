@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_k8s_resource_version",
+  "category": "kubernetes resourceVersion",
+  "title": "Deployment check followed by patch",
+  "description": "A workflow checks a Kubernetes deployment resourceVersion and later patches by name.",
+  "resource": "deployment_name",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "k8s_resource_version.get_deployment",
+      "effect_contract": "k8s_resource_version.patch_without_resource_version",
+      "expected_result": "candidate_risk",
+      "mutation": "change deployment replicas before patch",
+      "repair_obligation": "include the checked resourceVersion as an enforced precondition",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "k8s_resource_version.get_deployment",
+      "effect_contract": "k8s_resource_version.patch_with_resource_version",
+      "expected_result": "protected",
+      "mutation": "change deployment replicas before patch",
+      "repair_obligation": "version binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "k8s_resource_version.get_deployment",
+      "effect_contract": "k8s_resource_version.patch_with_resource_version",
+      "expected_result": "safe_near_miss",
+      "mutation": "patch a different deployment",
+      "repair_obligation": "no repair required because deployment identity differs",
+      "representations": ["mcp_trace"]
+    }
+  ]
+}

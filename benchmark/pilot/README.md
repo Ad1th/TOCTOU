@@ -1,6 +1,6 @@
-# BindBench M1 Pilot
+# BindBench Pilot
 
-The M1 pilot contains six scenario-family manifests, one per frozen category:
+The pilot benchmark contains twelve scenario-family manifests:
 
 - file/object identity
 - versioned key-value state
@@ -8,5 +8,11 @@ The M1 pilot contains six scenario-family manifests, one per frozen category:
 - authorization
 - value/availability
 - workflow control
+- database row version
+- cloud object generation
+- git commit hash validation
+- kubernetes resourceVersion
+- payment authorization revalidation
+- message queue acknowledgement
 
-Each family has exactly three variants: `vulnerable`, `repaired`, and `safe_near_miss`. These artifacts validate the corpus schema and annotation workflow only; executable workflow variants are introduced in later milestones.
+Each family has exactly three variants: `vulnerable`, `repaired`, and `safe_near_miss`. Workflow fixtures live in `examples/workflows/` and use the existing AgentLint JSON workflow format.

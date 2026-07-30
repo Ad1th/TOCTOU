@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "contract_id": "payment_revalidation.authorize_payment",
+  "operation": "check",
+  "resource_argument": "payment_id",
+  "predicate": "authorization_valid",
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown"
+}

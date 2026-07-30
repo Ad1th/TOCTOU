@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "queue_ack.ack_by_receipt_handle",
+  "operation": "effect",
+  "resource_argument": "receipt_handle",
+  "predicate": null,
+  "binding_mechanisms": ["stable_identity"],
+  "authority_behavior": "enforced",
+  "effect_category": "ack_message",
+  "safety_oracle": "acks_checked_message_delivery"
+}

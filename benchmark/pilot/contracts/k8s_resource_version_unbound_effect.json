@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "k8s_resource_version.patch_without_resource_version",
+  "operation": "effect",
+  "resource_argument": "deployment_name",
+  "predicate": null,
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown",
+  "effect_category": "patch_deployment",
+  "safety_oracle": "replicas_still_within_limit"
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "contract_id": "k8s_resource_version.get_deployment",
+  "operation": "check",
+  "resource_argument": "deployment_name",
+  "predicate": "replicas_within_limit",
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown",
+  "version_argument": "resource_version"
+}

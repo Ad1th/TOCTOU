@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "contract_id": "db_row_version.update_with_version",
+  "operation": "effect",
+  "resource_argument": "row_id",
+  "predicate": null,
+  "binding_mechanisms": ["version"],
+  "authority_behavior": "enforced",
+  "version_argument": "expected_row_version",
+  "effect_category": "update_row",
+  "safety_oracle": "row_status_still_open"
+}

@@ -30,9 +30,9 @@ def test_complete_evaluation_pipeline_writes_expected_artifacts(tmp_path: Path) 
 
     metrics = run_evaluation(results_dir=tmp_path, clock=StepClock())
 
-    assert metrics.total_workflows_analyzed == 18
-    assert metrics.total_findings == 6
-    assert metrics.true_positives == 6
+    assert metrics.total_workflows_analyzed == 36
+    assert metrics.total_findings == 12
+    assert metrics.true_positives == 12
     assert metrics.false_positives == 0
     assert metrics.false_negatives == 0
     assert metrics.precision == 1.0
@@ -142,5 +142,5 @@ def test_default_workflow_fixtures_load_all_pilot_cases() -> None:
     contracts = load_contracts(PROJECT_ROOT / "benchmark/pilot/contracts")
     cases = load_workflow_cases(PROJECT_ROOT / "examples/workflows", contracts)
 
-    assert len(cases) == 18
+    assert len(cases) == 36
     assert sorted({case.variant for case in cases}) == ["repaired", "safe_near_miss", "vulnerable"]

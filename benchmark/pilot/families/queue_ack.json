@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_queue_ack",
+  "category": "message queue acknowledgement",
+  "title": "Message inspection followed by acknowledgement",
+  "description": "A workflow inspects a queue message, then acknowledges by mutable message ID instead of receipt handle.",
+  "resource": "message_id",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "queue_ack.inspect_message",
+      "effect_contract": "queue_ack.ack_by_message_id",
+      "expected_result": "candidate_risk",
+      "mutation": "redeliver message with a new receipt before acknowledgement",
+      "repair_obligation": "acknowledge using the checked receipt handle",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "queue_ack.inspect_message",
+      "effect_contract": "queue_ack.ack_by_receipt_handle",
+      "expected_result": "protected",
+      "mutation": "redeliver message with a new receipt before acknowledgement",
+      "repair_obligation": "stable identity binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "queue_ack.inspect_message",
+      "effect_contract": "queue_ack.ack_by_receipt_handle",
+      "expected_result": "safe_near_miss",
+      "mutation": "redeliver a different message",
+      "repair_obligation": "no repair required because receipt identity differs",
+      "representations": ["mcp_trace"]
+    }
+  ]
+}

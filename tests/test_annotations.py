@@ -20,7 +20,7 @@ def test_two_pilot_annotation_sets_meet_kappa_threshold() -> None:
 
     assert annotator_a.annotator_id == "annotator_a"
     assert annotator_b.annotator_id == "annotator_b"
-    assert len(annotator_a.records) == 18
+    assert len(annotator_a.records) == 36
     assert cohen_kappa(annotator_a, annotator_b) >= 0.70
 
 

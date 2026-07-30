@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_git_commit_hash",
+  "category": "git commit hash validation",
+  "title": "Release ref review followed by deploy",
+  "description": "A workflow resolves and reviews a release ref, then deploys by mutable ref name.",
+  "resource": "ref_name",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "git_commit_hash.resolve_release_ref",
+      "effect_contract": "git_commit_hash.deploy_ref",
+      "expected_result": "candidate_risk",
+      "mutation": "move release ref to an unreviewed commit before deploy",
+      "repair_obligation": "deploy the checked immutable commit hash",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "git_commit_hash.resolve_release_ref",
+      "effect_contract": "git_commit_hash.deploy_commit",
+      "expected_result": "protected",
+      "mutation": "move release ref to an unreviewed commit before deploy",
+      "repair_obligation": "stable identity binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "git_commit_hash.resolve_release_ref",
+      "effect_contract": "git_commit_hash.deploy_commit",
+      "expected_result": "safe_near_miss",
+      "mutation": "move an unrelated branch ref",
+      "repair_obligation": "no repair required because deployment uses checked commit hash",
+      "representations": ["langgraph_source"]
+    }
+  ]
+}

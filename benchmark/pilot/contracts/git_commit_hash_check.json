@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "contract_id": "git_commit_hash.resolve_release_ref",
+  "operation": "check",
+  "resource_argument": "ref_name",
+  "predicate": "commit_reviewed",
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown",
+  "version_argument": "commit_hash"
+}

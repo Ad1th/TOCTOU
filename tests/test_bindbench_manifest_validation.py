@@ -16,15 +16,15 @@ from agentlint.benchmark import (
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_six_pilot_families_validate() -> None:
-    """M1 includes one valid pilot family per frozen category."""
+def test_pilot_families_validate() -> None:
+    """The expanded pilot benchmark includes valid families and variants."""
 
     manifests = [
         load_manifest(manifest_path)
         for manifest_path in sorted((PROJECT_ROOT / "benchmark/pilot/families").glob("*.json"))
     ]
 
-    assert len(manifests) == 6
+    assert len(manifests) == 12
     assert {manifest.category for manifest in manifests} == {
         "file/object identity",
         "versioned key-value state",
@@ -32,6 +32,12 @@ def test_six_pilot_families_validate() -> None:
         "authorization",
         "value/availability",
         "workflow control",
+        "database row version",
+        "cloud object generation",
+        "git commit hash validation",
+        "kubernetes resourceVersion",
+        "payment authorization revalidation",
+        "message queue acknowledgement",
     }
     for manifest in manifests:
         assert {variant.kind for variant in manifest.variants} == set(VariantKind)

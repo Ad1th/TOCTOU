@@ -180,6 +180,186 @@
         {"node_id": "effect", "kind": "tool_call", "contract_id": "workflow_control.complete_after_callback"}
       ],
       "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_db_row_version_repaired",
+      "family_id": "pilot_db_row_version",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "db_row_version.read_order", "resources": [{"resource_id": "order:1001", "argument_name": "row_id", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "db_row_version.update_with_version", "bindings": [{"mechanism": "version", "contract_id": "db_row_version.update_with_version", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_db_row_version_safe_near_miss",
+      "family_id": "pilot_db_row_version",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "db_row_version.read_order", "resources": [{"resource_id": "order:1001", "argument_name": "row_id", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "db_row_version.update_with_version", "bindings": [{"mechanism": "version", "contract_id": "db_row_version.update_with_version", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_db_row_version_vulnerable",
+      "family_id": "pilot_db_row_version",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "db_row_version.read_order", "resources": [{"resource_id": "order:1001", "argument_name": "row_id", "resource_type": "key_value"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "db_row_version.update_without_version"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_cloud_generation_repaired",
+      "family_id": "pilot_cloud_generation",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "cloud_generation.get_object_metadata", "resources": [{"resource_id": "gs://bucket/report.pdf", "argument_name": "object_name", "resource_type": "file"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "cloud_generation.delete_with_generation", "bindings": [{"mechanism": "version", "contract_id": "cloud_generation.delete_with_generation", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_cloud_generation_safe_near_miss",
+      "family_id": "pilot_cloud_generation",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "cloud_generation.get_object_metadata", "resources": [{"resource_id": "gs://bucket/report.pdf", "argument_name": "object_name", "resource_type": "file"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "cloud_generation.delete_with_generation", "bindings": [{"mechanism": "version", "contract_id": "cloud_generation.delete_with_generation", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_cloud_generation_vulnerable",
+      "family_id": "pilot_cloud_generation",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "cloud_generation.get_object_metadata", "resources": [{"resource_id": "gs://bucket/report.pdf", "argument_name": "object_name", "resource_type": "file"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "cloud_generation.delete_without_generation"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_git_commit_hash_repaired",
+      "family_id": "pilot_git_commit_hash",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "git_commit_hash.resolve_release_ref", "resources": [{"resource_id": "refs/heads/release", "argument_name": "ref_name", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "git_commit_hash.deploy_commit", "bindings": [{"mechanism": "stable_identity", "contract_id": "git_commit_hash.deploy_commit", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_git_commit_hash_safe_near_miss",
+      "family_id": "pilot_git_commit_hash",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "git_commit_hash.resolve_release_ref", "resources": [{"resource_id": "refs/heads/release", "argument_name": "ref_name", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "git_commit_hash.deploy_commit", "bindings": [{"mechanism": "stable_identity", "contract_id": "git_commit_hash.deploy_commit", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_git_commit_hash_vulnerable",
+      "family_id": "pilot_git_commit_hash",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "git_commit_hash.resolve_release_ref", "resources": [{"resource_id": "refs/heads/release", "argument_name": "ref_name", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "git_commit_hash.deploy_ref"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_k8s_resource_version_repaired",
+      "family_id": "pilot_k8s_resource_version",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "k8s_resource_version.get_deployment", "resources": [{"resource_id": "deployment:checkout", "argument_name": "deployment_name", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "k8s_resource_version.patch_with_resource_version", "bindings": [{"mechanism": "version", "contract_id": "k8s_resource_version.patch_with_resource_version", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_k8s_resource_version_safe_near_miss",
+      "family_id": "pilot_k8s_resource_version",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "k8s_resource_version.get_deployment", "resources": [{"resource_id": "deployment:checkout", "argument_name": "deployment_name", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "k8s_resource_version.patch_with_resource_version", "bindings": [{"mechanism": "version", "contract_id": "k8s_resource_version.patch_with_resource_version", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_k8s_resource_version_vulnerable",
+      "family_id": "pilot_k8s_resource_version",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "k8s_resource_version.get_deployment", "resources": [{"resource_id": "deployment:checkout", "argument_name": "deployment_name", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "k8s_resource_version.patch_without_resource_version"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_payment_revalidation_repaired",
+      "family_id": "pilot_payment_revalidation",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "payment_revalidation.authorize_payment", "resources": [{"resource_id": "payment:pay_123", "argument_name": "payment_id", "resource_type": "authority"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "payment_revalidation.capture_with_revalidation", "bindings": [{"mechanism": "revalidation", "contract_id": "payment_revalidation.capture_with_revalidation", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_payment_revalidation_safe_near_miss",
+      "family_id": "pilot_payment_revalidation",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "payment_revalidation.authorize_payment", "resources": [{"resource_id": "payment:pay_123", "argument_name": "payment_id", "resource_type": "authority"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "payment_revalidation.capture_with_revalidation", "bindings": [{"mechanism": "revalidation", "contract_id": "payment_revalidation.capture_with_revalidation", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_payment_revalidation_vulnerable",
+      "family_id": "pilot_payment_revalidation",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "payment_revalidation.authorize_payment", "resources": [{"resource_id": "payment:pay_123", "argument_name": "payment_id", "resource_type": "authority"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "payment_revalidation.capture_without_revalidation"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_queue_ack_repaired",
+      "family_id": "pilot_queue_ack",
+      "variant": "repaired",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "queue_ack.inspect_message", "resources": [{"resource_id": "message:abc", "argument_name": "message_id", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "queue_ack.ack_by_receipt_handle", "bindings": [{"mechanism": "stable_identity", "contract_id": "queue_ack.ack_by_receipt_handle", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_queue_ack_safe_near_miss",
+      "family_id": "pilot_queue_ack",
+      "variant": "safe_near_miss",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "queue_ack.inspect_message", "resources": [{"resource_id": "message:abc", "argument_name": "message_id", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "queue_ack.ack_by_receipt_handle", "bindings": [{"mechanism": "stable_identity", "contract_id": "queue_ack.ack_by_receipt_handle", "authority_enforced": true}]}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
+    },
+    {
+      "workflow_id": "pilot_queue_ack_vulnerable",
+      "family_id": "pilot_queue_ack",
+      "variant": "vulnerable",
+      "nodes": [
+        {"node_id": "check", "kind": "tool_call", "contract_id": "queue_ack.inspect_message", "resources": [{"resource_id": "message:abc", "argument_name": "message_id", "resource_type": "workflow"}]},
+        {"node_id": "effect", "kind": "tool_call", "contract_id": "queue_ack.ack_by_message_id"}
+      ],
+      "edges": [{"edge_id": "e1", "source_id": "check", "target_id": "effect"}]
     }
   ]
 }

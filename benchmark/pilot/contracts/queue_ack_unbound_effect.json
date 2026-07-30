@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "queue_ack.ack_by_message_id",
+  "operation": "effect",
+  "resource_argument": "message_id",
+  "predicate": null,
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown",
+  "effect_category": "ack_message",
+  "safety_oracle": "acks_checked_message_delivery"
+}

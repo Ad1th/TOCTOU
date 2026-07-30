@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_payment_revalidation",
+  "category": "payment authorization revalidation",
+  "title": "Payment authorization followed by capture",
+  "description": "A workflow verifies payment authorization and later captures after the authorization may expire.",
+  "resource": "payment_id",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "payment_revalidation.authorize_payment",
+      "effect_contract": "payment_revalidation.capture_without_revalidation",
+      "expected_result": "candidate_risk",
+      "mutation": "expire authorization before capture",
+      "repair_obligation": "revalidate authorization at the enforcing authority before capture",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "payment_revalidation.authorize_payment",
+      "effect_contract": "payment_revalidation.capture_with_revalidation",
+      "expected_result": "protected",
+      "mutation": "expire authorization before capture",
+      "repair_obligation": "revalidation binding is authority-enforced",
+      "representations": ["langgraph_source", "mcp_trace"]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "payment_revalidation.authorize_payment",
+      "effect_contract": "payment_revalidation.capture_with_revalidation",
+      "expected_result": "safe_near_miss",
+      "mutation": "expire a different payment authorization",
+      "repair_obligation": "no repair required because payment identity differs",
+      "representations": ["langgraph_source"]
+    }
+  ]
+}

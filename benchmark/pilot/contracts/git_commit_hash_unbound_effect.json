@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "git_commit_hash.deploy_ref",
+  "operation": "effect",
+  "resource_argument": "ref_name",
+  "predicate": null,
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown",
+  "effect_category": "deploy",
+  "safety_oracle": "deploys_reviewed_commit"
+}

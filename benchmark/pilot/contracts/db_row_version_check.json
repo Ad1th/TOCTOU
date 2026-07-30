@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "contract_id": "db_row_version.read_order",
+  "operation": "check",
+  "resource_argument": "row_id",
+  "predicate": "order_status_open",
+  "binding_mechanisms": ["none"],
+  "authority_behavior": "unknown",
+  "version_argument": "row_version"
+}
