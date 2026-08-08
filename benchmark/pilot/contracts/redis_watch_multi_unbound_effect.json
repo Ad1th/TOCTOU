@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "redis_watch_multi.set_unwatched",
+  "operation": "effect",
+  "resource_argument": "redis_key",
+  "predicate": null,
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown",
+  "effect_category": "kv_write",
+  "safety_oracle": "updates_checked_key"
+}

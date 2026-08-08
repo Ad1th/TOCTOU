@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "tenant_scope_recheck.query_tenant_db_scoped",
+  "operation": "effect",
+  "resource_argument": "tenant_id",
+  "predicate": null,
+  "binding_mechanisms": [
+    "revalidation"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "db_query",
+  "safety_oracle": "queries_cross_tenant"
+}

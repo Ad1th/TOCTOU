@@ -4,8 +4,8 @@
   "false_positives": 0,
   "precision": 1.0,
   "recall": 1.0,
-  "total_findings": 12,
-  "total_runtime_seconds": 0.0005648780352203175,
-  "total_workflows_analyzed": 36,
-  "true_positives": 12
+  "total_findings": 24,
+  "total_runtime_seconds": 0.0009569120002197451,
+  "total_workflows_analyzed": 72,
+  "true_positives": 24
 }

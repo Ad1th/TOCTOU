@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_async_job_join",
+  "category": "workflow control",
+  "title": "Async job status check followed by unlocked result fetch",
+  "description": "A workflow checks if an async job complete flag is set then reads output without lock.",
+  "resource": "job_id",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "async_job_join.check_job_status",
+      "effect_contract": "async_job_join.fetch_results_unlocked",
+      "expected_result": "candidate_risk",
+      "mutation": "reset job status to running before fetch",
+      "repair_obligation": "fetch results while holding job lifecycle lock",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "async_job_join.check_job_status",
+      "effect_contract": "async_job_join.fetch_results_under_lock",
+      "expected_result": "protected",
+      "mutation": "reset job status to running before fetch",
+      "repair_obligation": "synchronization binding is authority-enforced",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "async_job_join.check_job_status",
+      "effect_contract": "async_job_join.fetch_results_under_lock",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify unrelated resource",
+      "repair_obligation": "no repair required because binding covers resource",
+      "representations": [
+        "langgraph_source"
+      ]
+    }
+  ]
+}

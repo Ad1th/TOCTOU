@@ -1,0 +1,9 @@
+{
+  "expected_label": "protected",
+  "family_id": "pilot_rest_if_unmodified",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "repaired",
+  "workflow_id": "pilot_rest_if_unmodified_repaired"
+}

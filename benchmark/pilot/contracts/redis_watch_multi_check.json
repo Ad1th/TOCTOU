@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "redis_watch_multi.get_key",
+  "operation": "check",
+  "resource_argument": "redis_key",
+  "predicate": "state_valid",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

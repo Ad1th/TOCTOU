@@ -1,0 +1,2 @@
+experiment_id: E5_frontend_fidelity
+representations: [langgraph_source, mcp_trace]

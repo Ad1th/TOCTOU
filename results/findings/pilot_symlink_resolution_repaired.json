@@ -1,0 +1,9 @@
+{
+  "expected_label": "protected",
+  "family_id": "pilot_symlink_resolution",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "repaired",
+  "workflow_id": "pilot_symlink_resolution_repaired"
+}

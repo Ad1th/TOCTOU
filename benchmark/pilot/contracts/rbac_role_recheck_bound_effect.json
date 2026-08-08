@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "rbac_role_recheck.execute_action_with_role_recheck",
+  "operation": "effect",
+  "resource_argument": "user_role",
+  "predicate": null,
+  "binding_mechanisms": [
+    "revalidation"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "privilege_exec",
+  "safety_oracle": "executes_for_revoked_role"
+}

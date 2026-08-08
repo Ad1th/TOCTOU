@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "webhook_token_ack.process_payload_unbound",
+  "operation": "effect",
+  "resource_argument": "webhook_event",
+  "predicate": null,
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown",
+  "effect_category": "webhook_process",
+  "safety_oracle": "reprocesses_replay_payload"
+}

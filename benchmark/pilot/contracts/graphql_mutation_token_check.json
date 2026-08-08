@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "graphql_mutation_token.query_state",
+  "operation": "check",
+  "resource_argument": "query_state",
+  "predicate": "state_eligible",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "tenant_scope_recheck.verify_tenant_access",
+  "operation": "check",
+  "resource_argument": "tenant_id",
+  "predicate": "tenant_valid",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

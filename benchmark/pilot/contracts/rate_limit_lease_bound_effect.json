@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "rate_limit_lease.acquire_token_lease",
+  "operation": "effect",
+  "resource_argument": "bucket_id",
+  "predicate": null,
+  "binding_mechanisms": [
+    "atomic"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "quota_consume",
+  "safety_oracle": "exceeds_rate_limit"
+}

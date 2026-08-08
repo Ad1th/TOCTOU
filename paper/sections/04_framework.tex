@@ -1,0 +1,68 @@
+\section{The AgentLint Framework}
+\label{sec:framework}
+
+In this section, we describe the architectural design of AgentLint, including workflow ingestion, tool contract parsing, topological dependency propagation, and repair obligation synthesis.
+
+\subsection{System Architecture}
+AgentLint operates as a static and dynamic analysis engine designed to evaluate check-effect safety in agent workflows. As illustrated in the architecture pipeline, AgentLint ingests workflow definitions from multiple frontends (e.g., LangGraph source graphs or MCP execution trace logs), parses associated tool contract declarations, constructs the immutable \textsf{AWIR-B} graph, and performs deterministic analysis.
+
+\subsection{Declarative Tool Contracts}
+AgentLint relies on lightweight, declarative JSON/YAML contracts attached to tools. A tool contract defines the tool's behavioral semantics without requiring full source code analysis of external server implementations.
+
+Listing~\cite{mcp2024spec} illustrates an example contract for an HTTP ETag-protected resource update tool:
+\begin{verbatim}
+{
+  "tool_name": "update_http_resource",
+  "operation": "EFFECT",
+  "resource_argument": "uri",
+  "binding_mechanisms": ["ETAG"],
+  "authority_enforced": true,
+  "version_argument": "etag_header"
+}
+\end{verbatim}
+
+Contracts distinguish between client-side checks (e.g., an agent checking a local variable) and authority-enforced checks (e.g., a database conditional update where the server verifies the precondition atomically).
+
+\subsection{Topological Dependency Propagation Engine}
+Algorithm~\ref{alg:dependency_propagation} details the deterministic dependency propagation algorithm implemented in `agentlint/ir/dependencies.py`.
+
+\begin{algorithm}[h]
+\caption{AgentLint Topological Dependency Propagation}
+\label{alg:dependency_propagation}
+\begin{algorithmic}[1]
+\REQUIRE Workflow Graph $W = (V, E, C)$
+\ENSURE Dependency Graph $G_D$, Node States $\mathcal{S}$
+\STATE Initialize $Q \gets \text{InDegreeZeroNodes}(W)$
+\STATE Initialize $\mathcal{S}[n] \gets (\emptyset, \emptyset)$ for all $n \in V$
+\WHILE{$Q$ is not empty}
+    \STATE $n \gets \text{Pop}(Q)$
+    \STATE $\text{InRes}, \text{InBind} \gets \bigcup_{p \in \text{Pred}(n)} \mathcal{S}[p]$
+    \STATE $\text{CurrRes} \gets \text{InRes} \cup \text{ExtractResources}(n, C[n])$
+    \STATE $\text{CurrBind} \gets \text{InBind} \cup \text{ExtractBindings}(n, C[n])$
+    \STATE $\mathcal{S}[n] \gets (\text{CurrRes}, \text{CurrBind})$
+    \FOR{each successor $s \in \text{Succ}(n)$}
+        \STATE $\text{InDegree}(s) \gets \text{InDegree}(s) - 1$
+        \IF{$\text{InDegree}(s) == 0$}
+            \STATE $\text{Push}(Q, s)$
+        \ENDIF
+    \ENDFOR
+\ENDWHILE
+\RETURN $G_D, \mathcal{S}$
+\end{algorithmic}
+\end{algorithm}
+
+The algorithm processes nodes in topological order using Kahn's algorithm~\cite{kahn1962topological}. At each node $n$, incoming resource assertions and active bindings are joined across predecessor paths.
+
+\subsection{Finding Generation \& Prescriptive Repair Obligations}
+The finding generator (`agentlint/ir/findings.py`) inspects the propagated dependency state at every node $n_e$ where $\text{op}(C[n_e]) = \text{EFFECT}$. If $n_e$ depends on a resource $r$ introduced by a check node $n_c$, but no authority-enforced binding exists in $\mathcal{S}[n_e].\text{CurrBind}$, AgentLint emits a structured finding:
+\begin{itemize}
+    \item \textbf{Finding Kind}: \textsf{MISSING\_CHECK\_EFFECT\_BINDING}.
+    \item \textbf{Location}: Check Node $n_c$, Effect Node $n_e$, Resource $r$.
+    \item \textbf{Prescriptive Repair Obligation}: Generates precise remediation steps, such as:
+      \begin{enumerate}
+          \item Attach version token argument $v_c$ from $n_c$ to $n_e$.
+          \item Replace un-bound effect tool with atomic conditional variant (e.g., `If-Match` ETag or SQL `WHERE version = v_c`).
+      \end{enumerate}
+\end{itemize}
+
+% TODO: [Framework Enhancement] Implement dynamic contract inference from OpenAPI / JSON-Schema tool specs.

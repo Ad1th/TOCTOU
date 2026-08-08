@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "rate_limit_lease.check_tokens_available",
+  "operation": "check",
+  "resource_argument": "bucket_id",
+  "predicate": "tokens_sufficient",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_graphql_mutation_token",
+  "category": "HTTP-like resources",
+  "title": "GraphQL query inspect followed by tokenless mutation",
+  "description": "A workflow queries a GraphQL state object then sends a mutation without a concurrency token.",
+  "resource": "query_state",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "graphql_mutation_token.query_state",
+      "effect_contract": "graphql_mutation_token.mutate_without_token",
+      "expected_result": "candidate_risk",
+      "mutation": "change GraphQL entity state before mutation",
+      "repair_obligation": "provide clientMutationId / state token in mutation input",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "graphql_mutation_token.query_state",
+      "effect_contract": "graphql_mutation_token.mutate_with_token",
+      "expected_result": "protected",
+      "mutation": "change GraphQL entity state before mutation",
+      "repair_obligation": "version binding is authority-enforced",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "graphql_mutation_token.query_state",
+      "effect_contract": "graphql_mutation_token.mutate_with_token",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify unrelated resource",
+      "repair_obligation": "no repair required because binding covers resource",
+      "representations": [
+        "langgraph_source"
+      ]
+    }
+  ]
+}

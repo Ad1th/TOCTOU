@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "s3_object_version.put_object_unversioned",
+  "operation": "effect",
+  "resource_argument": "s3_key",
+  "predicate": null,
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown",
+  "effect_category": "put_object",
+  "safety_oracle": "overwrites_checked_version"
+}

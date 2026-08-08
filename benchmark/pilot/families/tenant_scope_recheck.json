@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_tenant_scope_recheck",
+  "category": "authorization",
+  "title": "Tenant scope check followed by unscoped query",
+  "description": "A workflow checks tenant boundary access then executes an unscoped cross-tenant query.",
+  "resource": "tenant_id",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "tenant_scope_recheck.verify_tenant_access",
+      "effect_contract": "tenant_scope_recheck.query_tenant_db_unscoped",
+      "expected_result": "candidate_risk",
+      "mutation": "switch active tenant scope in session context",
+      "repair_obligation": "recheck tenant scope token at database layer",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "tenant_scope_recheck.verify_tenant_access",
+      "effect_contract": "tenant_scope_recheck.query_tenant_db_scoped",
+      "expected_result": "protected",
+      "mutation": "switch active tenant scope in session context",
+      "repair_obligation": "revalidation binding is authority-enforced",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "tenant_scope_recheck.verify_tenant_access",
+      "effect_contract": "tenant_scope_recheck.query_tenant_db_scoped",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify unrelated resource",
+      "repair_obligation": "no repair required because binding covers resource",
+      "representations": [
+        "langgraph_source"
+      ]
+    }
+  ]
+}

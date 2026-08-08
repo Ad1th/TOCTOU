@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "contract_id": "webhook_token_ack.process_payload_with_nonce",
+  "operation": "effect",
+  "resource_argument": "webhook_event",
+  "predicate": null,
+  "binding_mechanisms": [
+    "version"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "webhook_process",
+  "safety_oracle": "reprocesses_replay_payload",
+  "version_argument": "version"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_redis_watch_multi",
+  "category": "versioned key-value state",
+  "title": "Redis state inspect followed by set",
+  "description": "A workflow reads a Redis key value then sets new state without a WATCH transaction.",
+  "resource": "redis_key",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "redis_watch_multi.get_key",
+      "effect_contract": "redis_watch_multi.set_unwatched",
+      "expected_result": "candidate_risk",
+      "mutation": "modify Redis key between GET and SET",
+      "repair_obligation": "execute update within a WATCH/MULTI atomic block",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "redis_watch_multi.get_key",
+      "effect_contract": "redis_watch_multi.exec_watched",
+      "expected_result": "protected",
+      "mutation": "modify Redis key between GET and SET",
+      "repair_obligation": "atomic binding is authority-enforced",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "redis_watch_multi.get_key",
+      "effect_contract": "redis_watch_multi.exec_watched",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify unrelated resource",
+      "repair_obligation": "no repair required because binding covers resource",
+      "representations": [
+        "langgraph_source"
+      ]
+    }
+  ]
+}

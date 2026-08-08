@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "contract_id": "rest_if_unmodified.put_if_unmodified_since",
+  "operation": "effect",
+  "resource_argument": "api_endpoint",
+  "predicate": null,
+  "binding_mechanisms": [
+    "version"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "http_write",
+  "safety_oracle": "modifies_checked_resource",
+  "version_argument": "version"
+}

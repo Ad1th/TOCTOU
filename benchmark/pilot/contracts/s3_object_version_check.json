@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "s3_object_version.get_object_acl",
+  "operation": "check",
+  "resource_argument": "s3_key",
+  "predicate": "acl_permits",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

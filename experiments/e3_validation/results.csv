@@ -1,0 +1,4 @@
+workflow_variant,total_cases,outcome,schedules_attempted,mean_validation_sec
+vulnerable,24,validated,24,0.0012
+repaired,24,not_triggered_within_budget,1200,0.015
+safe_near_miss,24,not_triggered_within_budget,1200,0.0148

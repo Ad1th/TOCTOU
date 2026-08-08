@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_inventory_price_lock",
+  "category": "value/availability",
+  "title": "Item price check followed by unlocked purchase",
+  "description": "A workflow checks item checkout price then places order without price lock guarantee.",
+  "resource": "cart_item",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "inventory_price_lock.get_cart_price",
+      "effect_contract": "inventory_price_lock.checkout_unlocked",
+      "expected_result": "candidate_risk",
+      "mutation": "update item price in catalog before checkout",
+      "repair_obligation": "pass price lock token or perform atomic conditional checkout",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "inventory_price_lock.get_cart_price",
+      "effect_contract": "inventory_price_lock.checkout_locked_price",
+      "expected_result": "protected",
+      "mutation": "update item price in catalog before checkout",
+      "repair_obligation": "atomic binding is authority-enforced",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "inventory_price_lock.get_cart_price",
+      "effect_contract": "inventory_price_lock.checkout_locked_price",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify unrelated resource",
+      "repair_obligation": "no repair required because binding covers resource",
+      "representations": [
+        "langgraph_source"
+      ]
+    }
+  ]
+}

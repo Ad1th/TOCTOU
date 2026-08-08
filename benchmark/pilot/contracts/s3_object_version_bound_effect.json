@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "contract_id": "s3_object_version.put_object_versioned",
+  "operation": "effect",
+  "resource_argument": "version_id",
+  "predicate": null,
+  "binding_mechanisms": [
+    "version"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "put_object",
+  "safety_oracle": "overwrites_checked_version",
+  "version_argument": "version"
+}

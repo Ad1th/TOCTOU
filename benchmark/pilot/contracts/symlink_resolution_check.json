@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "symlink_resolution.check_symlink_target",
+  "operation": "check",
+  "resource_argument": "path",
+  "predicate": "path_safe",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

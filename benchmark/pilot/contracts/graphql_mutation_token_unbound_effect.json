@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "graphql_mutation_token.mutate_without_token",
+  "operation": "effect",
+  "resource_argument": "query_state",
+  "predicate": null,
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown",
+  "effect_category": "http_write",
+  "safety_oracle": "mutates_checked_state"
+}

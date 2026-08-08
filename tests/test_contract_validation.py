@@ -25,7 +25,7 @@ def test_all_pilot_contracts_validate() -> None:
         for contract_path in sorted((PROJECT_ROOT / "benchmark/pilot/contracts").glob("*.json"))
     ]
 
-    assert len(contracts) == 36
+    assert len(contracts) == 72
     assert {contract.operation for contract in contracts} == {
         ToolOperation.CHECK,
         ToolOperation.EFFECT,

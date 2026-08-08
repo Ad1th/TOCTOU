@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "webhook_token_ack.verify_webhook_signature",
+  "operation": "check",
+  "resource_argument": "webhook_event",
+  "predicate": "signature_valid",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

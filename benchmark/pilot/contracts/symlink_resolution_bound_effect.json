@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "symlink_resolution.write_by_fd",
+  "operation": "effect",
+  "resource_argument": "fd",
+  "predicate": null,
+  "binding_mechanisms": [
+    "stable_identity"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "write_file",
+  "safety_oracle": "writes_checked_path"
+}

@@ -1,0 +1,49 @@
+\section{Background and Motivation}
+\label{sec:background}
+
+In this section, we describe the operational architecture of LLM-agent tool orchestration, present a concrete motivating scenario illustrating check-effect binding risks, and formally define our threat model.
+
+\subsection{LLM Agent Execution Model \& Tool Calling}
+Modern LLM-based agent systems combine a central reasoning engine (the LLM planner) with external operational tools via structured function calling. Prominent frameworks such as LangGraph and standardization efforts like Anthropic's Model Context Protocol (MCP)~\cite{mcp2024spec} structure agent execution as directed graphs or state machines. 
+
+In a typical execution loop:
+1. The agent receives an operational request and context state.
+2. The LLM emits a tool call invocation containing target tool identifiers and JSON-formatted arguments.
+3. The host environment executes the tool against external services (e.g., REST APIs, SQL databases, POSIX filesystems) and returns the observation result to the LLM.
+4. The LLM processes the observation, potentially updating its internal chain-of-thought, and decides whether to invoke additional tools or terminate.
+
+Crucially, tool calls are treated by the orchestrator as discrete, uncoordinated side effects. Unless explicit atomic primitives or transactional tokens are enforced by the underlying API, each tool invocation represents an independent network request.
+
+\subsection{Motivating Scenario: Inventory \& Payment Check-Effect Gap}
+Consider an automated e-commerce procurement agent tasked with purchasing dynamic cloud infrastructure reserves or high-demand physical inventory. The agent workflow consists of three distinct tool calls:
+\begin{enumerate}
+    \item \texttt{check\_inventory(item\_id)}: Queries the current stock level and price for a given resource $R$. The tool returns an observation: $\text{stock} = 5, \text{price} = \$100$.
+    \item \texttt{evaluate\_budget(price)}: An internal decision node where the agent verifies that $\$100 \le \text{budget\_limit}$.
+    \item \texttt{execute\_purchase(item\_id, max\_price)}: Sends an order request to the vendor API to purchase resource $R$.
+\end{enumerate}
+
+\paragraph{Vulnerability Mechanism}
+At time $T_1$, the agent executes \texttt{check\_inventory}, validating that stock is available at $\$100$. At time $T_2$, an independent external buyer or concurrent agent process purchases the remaining stock, or the vendor updates the item price to $\$500$. At time $T_3$, the agent executes \texttt{execute\_purchase(item\_id, \$100)}. Because the vendor API's purchase endpoint does not validate an ETag, version token, or atomic lock, the purchase fails or silently executes at a modified price, violating the precondition assertion established at $T_1$.
+
+This gap between the precondition check at $T_1$ and the side-effecting operation at $T_3$ constitutes an agentic check-effect binding failure.
+
+\subsection{Threat Model and Security Invariants}
+We formalize the security boundaries and attacker capabilities under which AgentLint operates.
+
+\paragraph{Attacker Capabilities}
+\begin{itemize}
+    \item \textbf{Resource State Mutation}: An attacker or concurrent external process can alter the state, value, ownership, or availability of any declared mutable resource $R$ after a check tool has observed $R$, but before a dependent effect tool executes on $R$.
+    \item \textbf{Interleavings}: The attacker can control the timing of state mutations within the check-effect time window $[T_{\text{check}}, T_{\text{effect}}]$.
+\end{itemize}
+
+\paragraph{Excluded Risks \& Non-Goals}
+\begin{itemize}
+    \item We assume the host agent runtime, tool execution sandbox, and LLM inference API are uncompromised.
+    \item We do not consider direct prompt injection, adversarial hallucination, or tool result spoofing where an attacker forges cryptographically signed API responses.
+    \item We assume tool identity declarations and contract specifications accurately reflect underlying API behaviors.
+\end{itemize}
+
+\paragraph{Security Invariant}
+An agent workflow execution satisfies \emph{Check-Effect Validity} if and only if for every check operation $\text{op}_c$ establishing predicate $\phi$ over resource $R$, any subsequent effect operation $\text{op}_e$ depending on $\phi(R)$ executes under an authority-enforced binding mechanism (e.g., Version match, ETag, Atomic lock) that guarantees $\phi(R)$ remains true at the instant $\text{op}_e$ takes effect.
+
+% TODO: [Theoretical Modeling] Formalize multi-tenant cross-agent race conditions under dynamic step interleavings.

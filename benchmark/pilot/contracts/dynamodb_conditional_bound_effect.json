@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "contract_id": "dynamodb_conditional.update_conditional",
+  "operation": "effect",
+  "resource_argument": "item_pk",
+  "predicate": null,
+  "binding_mechanisms": [
+    "version"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "kv_write",
+  "safety_oracle": "updates_checked_item",
+  "version_argument": "version"
+}

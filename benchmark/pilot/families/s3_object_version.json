@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_s3_object_version",
+  "category": "file/object identity",
+  "title": "S3 object metadata check followed by put",
+  "description": "A workflow reads S3 object metadata before performing an unversioned put object call.",
+  "resource": "s3_key",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "s3_object_version.get_object_acl",
+      "effect_contract": "s3_object_version.put_object_unversioned",
+      "expected_result": "candidate_risk",
+      "mutation": "overwrite S3 object version before put",
+      "repair_obligation": "supply expected version_id as an enforced precondition",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "s3_object_version.get_object_acl",
+      "effect_contract": "s3_object_version.put_object_versioned",
+      "expected_result": "protected",
+      "mutation": "overwrite S3 object version before put",
+      "repair_obligation": "version binding is authority-enforced",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "s3_object_version.get_object_acl",
+      "effect_contract": "s3_object_version.put_object_versioned",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify unrelated resource",
+      "repair_obligation": "no repair required because binding covers resource",
+      "representations": [
+        "langgraph_source"
+      ]
+    }
+  ]
+}

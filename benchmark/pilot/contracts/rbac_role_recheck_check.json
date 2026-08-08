@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "rbac_role_recheck.check_user_role",
+  "operation": "check",
+  "resource_argument": "user_role",
+  "predicate": "role_authorized",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

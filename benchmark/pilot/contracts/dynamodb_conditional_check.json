@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "dynamodb_conditional.get_item",
+  "operation": "check",
+  "resource_argument": "item_pk",
+  "predicate": "status_active",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

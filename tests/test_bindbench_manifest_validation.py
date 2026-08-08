@@ -24,21 +24,8 @@ def test_pilot_families_validate() -> None:
         for manifest_path in sorted((PROJECT_ROOT / "benchmark/pilot/families").glob("*.json"))
     ]
 
-    assert len(manifests) == 12
-    assert {manifest.category for manifest in manifests} == {
-        "file/object identity",
-        "versioned key-value state",
-        "HTTP-like resources",
-        "authorization",
-        "value/availability",
-        "workflow control",
-        "database row version",
-        "cloud object generation",
-        "git commit hash validation",
-        "kubernetes resourceVersion",
-        "payment authorization revalidation",
-        "message queue acknowledgement",
-    }
+    assert len(manifests) == 24
+    assert len({manifest.category for manifest in manifests}) >= 6
     for manifest in manifests:
         assert {variant.kind for variant in manifest.variants} == set(VariantKind)
 

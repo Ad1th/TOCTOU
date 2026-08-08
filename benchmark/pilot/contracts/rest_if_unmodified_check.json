@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "rest_if_unmodified.get_resource",
+  "operation": "check",
+  "resource_argument": "api_endpoint",
+  "predicate": "resource_ready",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

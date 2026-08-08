@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "redis_watch_multi.exec_watched",
+  "operation": "effect",
+  "resource_argument": "redis_key",
+  "predicate": null,
+  "binding_mechanisms": [
+    "atomic"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "kv_write",
+  "safety_oracle": "updates_checked_key"
+}

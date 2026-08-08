@@ -1,0 +1,30 @@
+{
+  "expected_label": "candidate_risk",
+  "family_id": "pilot_webhook_token_ack",
+  "finding_count": 1,
+  "findings": [
+    {
+      "check_node_id": "check",
+      "effect_node_id": "effect",
+      "finding_id": "missing-check-effect-binding:pilot_webhook_token_ack_vulnerable:check:effect:webhook:event:evt_001",
+      "kind": "missing_check_effect_binding",
+      "location": {
+        "edge_id": null,
+        "node_id": "effect",
+        "source": null,
+        "workflow_id": "pilot_webhook_token_ack_vulnerable"
+      },
+      "missing_binding": "authority_enforced_check_effect_binding",
+      "repair_obligation_id": "bind_check_to_effect",
+      "resource": {
+        "argument_name": "webhook_event",
+        "identity": null,
+        "resource_id": "webhook:event:evt_001",
+        "resource_type": "workflow"
+      }
+    }
+  ],
+  "predicted_label": "candidate_risk",
+  "variant": "vulnerable",
+  "workflow_id": "pilot_webhook_token_ack_vulnerable"
+}

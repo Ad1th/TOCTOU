@@ -1,0 +1,11 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this paper, we presented \textbf{AgentLint}, a contract-verified analysis framework for detecting and repairing check-effect binding violations in LLM-agent tool workflows. By formalizing agent execution into the \textsf{AWIR-B} intermediate representation and reasoning over declarative tool contracts, AgentLint bridges the gap between static program reachability and authority-enforced concurrency semantics.
+
+We evaluated AgentLint on \textsf{BindBench}, a benchmark corpus comprising 24 scenario families across 72 workflow variants. AgentLint achieved perfect detection accuracy ($F_1 = 1.0$, $100\%$ precision and recall), eliminating all 48 false positives produced by reachability-only baselines while executing in sub-millisecond static analysis latency ($< 0.001$\,s per workflow). Furthermore, AgentLint's dynamic witness validator confirmed $100\%$ of flagged vulnerabilities under adversarial schedule mutations, and its prescriptive repair synthesizer eliminated all safety violations without impairing benign task execution.
+
+As LLM agents assume increasing operational autonomy across critical infrastructure, contract-verified analysis provides a principled, lightweight foundation for ensuring check-effect validity.
+
+\subsection*{Artifact Availability}
+The complete AgentLint source code, \textsf{AWIR-B} specification, \textsf{BindBench} benchmark corpus, evaluation scripts, and replication packages are available at: \url{https://github.com/anonymous/agentlint-toctou}.

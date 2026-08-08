@@ -1,0 +1,79 @@
+\section{Evaluation Methodology}
+\label{sec:methodology}
+
+In this section, we describe the \textsf{BindBench} benchmark corpus, human annotation protocols, baseline implementations, and research questions guiding our evaluation.
+
+\subsection{The \textsf{BindBench} Benchmark Corpus}
+To evaluate check-effect binding analysis, we construct \textsf{BindBench}, a benchmark dataset comprising 24 distinct scenario families across diverse operational domains. For every scenario family, \textsf{BindBench} provides three distinct workflow variants:
+\begin{enumerate}
+    \item \textbf{Vulnerable Variant}: Contains an unbound check-effect gap where a check operation observes a resource and a subsequent effect acts on it without authority protection.
+    \item \textbf{Repaired Variant}: Modifies the vulnerable workflow by introducing an authority-enforced binding mechanism (e.g., version match, ETag header, or atomic lock).
+    \item \textbf{Safe Near-Miss Variant}: Features a check and effect on independent resources or structurally safe control flow that superficially resembles a TOCTOU pattern but is harmless.
+\end{enumerate}
+
+This structure yields a total of $24 \times 3 = 72$ annotated workflow cases in `pilot_workflows.json`. Table~\ref{tab:bindbench_taxonomy} summarizes the scenario families.
+
+\begin{table*}[t]
+\centering
+\caption{\textsf{BindBench} Benchmark Corpus Taxonomy (24 Scenario Families)}
+\label{tab:bindbench_taxonomy}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+\textbf{Scenario Family} & \textbf{Domain Category} & \textbf{Target Resource} & \textbf{Check Operation} & \textbf{Effect Operation} & \textbf{Protection Mechanism} \\
+\midrule
+\texttt{file\_identity} & POSIX Filesystem & File Path / Symlink & \texttt{stat()} & \texttt{open(WRITE)} & \textsf{STABLE\_IDENTITY} / \textsf{O\_NOFOLLOW} \\
+\texttt{kv\_version} & Key-Value Store & KV Key / Revision & \texttt{get\_version()} & \texttt{put\_conditional()} & \textsf{VERSION} Match \\
+\texttt{http\_etag} & Web REST APIs & HTTP Resource & \texttt{GET (ETag)} & \texttt{PUT (If-Match)} & \textsf{ETAG} Re-validation \\
+\texttt{availability} & Cloud Compute & VM Instance & \texttt{check\_quota()} & \texttt{provision\_vm()} & \textsf{ATOMIC} Reservation \\
+\texttt{workflow\_control} & Agent State Engine & Step ID / Token & \texttt{read\_step()} & \texttt{trigger\_next()} & \textsf{LOCK} Synchronization \\
+\texttt{db\_row\_version} & Relational DB & SQL Table Row & \texttt{SELECT version} & \texttt{UPDATE WHERE ver} & \textsf{VERSION} Lock \\
+\texttt{cloud\_generation} & Cloud IAM & Bucket / Role & \texttt{get\_iam\_policy()} & \texttt{set\_iam\_policy()} & \textsf{VERSION} Generation \\
+\texttt{git\_commit_hash} & Source Control & Git Repository & \texttt{git\_rev\_parse()} & \texttt{git\_push()} & \textsf{STABLE\_IDENTITY} (Commit Hash) \\
+\texttt{k8s\_resource_version} & Container Orchestration & K8s Manifest & \texttt{kubectl\_get()} & \texttt{kubectl\_apply()} & \textsf{VERSION} (\texttt{resourceVersion}) \\
+\texttt{payment\_revalidation} & Financial API & Account Balance & \texttt{check\_balance()} & \texttt{capture\_payment()} & \textsf{RECHECK} Re-validation \\
+\texttt{queue\_ack} & Message Broker & Queue Message & \texttt{peek\_message()} & \texttt{ack\_message()} & \textsf{ATOMIC} Lease / Lock \\
+\texttt{async\_job\_join} & Batch Computing & Job ID & \texttt{get\_job\_status()} & \texttt{fetch\_results()} & \textsf{STABLE\_IDENTITY} \\
+\texttt{auth\_recheck} & Identity Provider & OAuth Token & \texttt{validate\_token()} & \texttt{access\_resource()} & \textsf{RECHECK} \\
+\texttt{dynamodb\_conditional} & NoSQL Database & DynamoDB Item & \texttt{get\_item()} & \texttt{put\_item(Condition)} & \textsf{VERSION} Expression \\
+\texttt{graphql_mutation_token} & Web API & GraphQL Schema & \texttt{query\_schema()} & \texttt{mutate(token)} & \textsf{ETAG} / Token \\
+\texttt{inventory\_price\_lock} & E-Commerce & Product Inventory & \texttt{get\_price()} & \texttt{create\_order(lock)} & \textsf{LOCK} Price Lock \\
+\texttt{rate\_limit\_lease} & API Gateway & Token Bucket & \texttt{check\_rate\_limit()} & \texttt{consume\_lease()} & \textsf{ATOMIC} Lease \\
+\texttt{rbac\_role\_recheck} & Security / RBAC & User Role & \texttt{check\_perm()} & \texttt{execute\_admin()} & \textsf{RECHECK} \\
+\texttt{redis\_watch\_multi} & Memory Cache & Redis Key & \texttt{WATCH key} & \texttt{EXEC transaction} & \textsf{ATOMIC} Transaction \\
+\texttt{rest\_if\_unmodified} & Storage Service & Blob Object & \texttt{head\_object()} & \texttt{delete\_object()} & \textsf{ETAG} (\texttt{If-Unmodified-Since}) \\
+\texttt{s3\_object\_version} & Object Storage & AWS S3 Bucket & \texttt{get\_object\_meta()} & \texttt{put\_object\_ver()} & \textsf{VERSION} (\texttt{versionId}) \\
+\texttt{symlink\_resolution} & Storage Security & Target Path & \texttt{lstat()} & \texttt{unlink()} & \textsf{STABLE\_IDENTITY} \\
+\texttt{tenant\_scope\_recheck} & Multi-Tenant App & Tenant Context & \texttt{verify\_tenant()} & \texttt{export\_data()} & \textsf{RECHECK} \\
+\texttt{webhook\_token\_ack} & Webhook Engine & Delivery Payload & \texttt{verify\_hmac()} & \texttt{process\_payload()} & \textsf{ATOMIC} Token Ack \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+\subsection{Human Annotation \& Inter-Rater Reliability}
+Ground truth annotations were generated independently by two domain experts (Annotator A and Annotator B) following an explicit annotation protocol (`benchmark/pilot/schema/annotation_schema.json`).
+
+Inter-rater agreement was calculated using Cohen's Kappa ($\kappa$)~\cite{cohen1960coefficient} via `agentlint/annotations.py`. Ground truth required $\kappa \ge 0.70$ for validation. The pilot annotations yielded near-perfect agreement ($\kappa > 0.90$), confirming benchmark clarity.
+
+\subsection{Baseline Specifications}
+We evaluate AgentLint (B4) against three comparative baselines:
+\begin{itemize}
+    \item \textbf{B1 (Pair Match Baseline)}: Flags any workflow containing a \textsf{CHECK} operation followed sequentially by an \textsf{EFFECT} operation on the same resource, ignoring graph reachability and binding mechanisms.
+    \item \textbf{B2 (Reachability Baseline)}: Enforces topological graph reachability from \textsf{CHECK} to \textsf{EFFECT} on the same resource, but ignores binding mechanisms.
+    \item \textbf{B3 (No-Binding Ablation Baseline)}: Uses \textsf{AWIR-B} graph reachability and operation taxonomy, but treats all binding mechanisms as non-protective ($\text{auth} = \text{False}$).
+    \item \textbf{B4 (AgentLint Full Framework)}: Complete contract-verified analysis enforcing graph reachability, resource matching, and authority-enforced binding mechanisms.
+\end{itemize}
+
+\subsection{Research Questions}
+Our empirical evaluation addresses six central research questions:
+\begin{itemize}
+    \item \textbf{RQ1 (Detection Accuracy)}: How accurately does AgentLint detect check-effect binding violations compared to baselines B1--B3?
+    \item \textbf{RQ2 (Contract Ablation)}: What is the specific false positive reduction attributable to contract-level authority enforcement?
+    \item \textbf{RQ3 (Dynamic Validation)}: Can AgentLint's dynamic witness engine trigger flagged vulnerabilities under adversarial state mutations?
+    \item \textbf{RQ4 (Repair Utility)}: Do AgentLint's prescriptive repair obligations eliminate vulnerabilities while preserving benign task success?
+    \item \textbf{RQ5 (Frontend Fidelity)}: How accurately does AWIR-B capture native workflow graphs from LangGraph and MCP trace logs?
+    \item \textbf{RQ6 (Scalability \& Overhead)}: How does AgentLint's analysis latency and memory usage scale with workflow graph size?
+\end{itemize}
+
+% TODO: [Statistical Enhancement] Compute explicit bootstrapping 95% confidence intervals for inter-rater Kappa scores across 72 pilot instances.

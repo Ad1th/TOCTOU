@@ -1,0 +1,29 @@
+\section{Discussion and Limitations}
+\label{sec:discussion}
+
+In this section, we discuss the practical implications of contract-verified analysis, examine system limitations, and identify threats to validity.
+
+\subsection{Manual vs. Automated Tool Contract Synthesis}
+A primary assumption of AgentLint is the availability of declarative tool contracts specifying operation types, target resource parameters, and authority-enforced binding mechanisms. In our evaluation, contracts for \textsf{BindBench} were manually specified based on target API documentation.
+
+\paragraph{Open Challenge}
+While standard specifications like the Model Context Protocol (MCP)~\cite{mcp2024spec} provide structural metadata (JSON Schemas for tool inputs/outputs), they currently lack standardized annotations for authority enforcement (e.g., explicitly flagging whether an `etag` argument is verified atomically server-side). Automated contract synthesis via static analysis of API implementations or dynamic contract inferencing remains an important direction for future research.
+
+\subsection{Cyclic Graphs and Dynamic ReAct Loops}
+The current \textsf{AWIR-B} graph representation relies on Kahn's algorithm~\cite{kahn1962topological} for topological ordering, which rejects cyclic graphs (`GraphCycleError`). Real-world agent architectures frequently deploy iterative reasoning loops (e.g., ReAct retry loops where an agent repeatedly checks a status until a condition is met).
+
+\paragraph{Mitigation Strategy}
+In our ingestion frontends (LangGraph and MCP trace logs), dynamic loop iterations are unrolled into acyclic execution traces prior to analysis. However, static analysis of infinite or state-dependent loop structures requires bounded loop unrolling or abstract interpretation over fixpoints.
+
+\subsection{Evasion Vectors and Untracked Side Effects}
+AgentLint's static dependency propagation relies on declared resource arguments. Several evasion vectors exist:
+\begin{enumerate}
+    \item \textbf{Implicit Side Effects}: If a tool modifies a database table or filesystem path that is not declared in its input arguments (e.g., an internal logging side effect), AgentLint will not track the dependency.
+    \item \textbf{Resource Aliasing}: If two distinct resource arguments (e.g., `/tmp/data.txt` and `/tmp/symlink.txt`) refer to the same physical entity due to filesystem aliasing, dependency propagation may fail to detect the overlap unless stable identity mechanisms are declared.
+\end{enumerate}
+
+\subsection{Threats to Validity}
+\paragraph{Internal Validity} Ground truth annotations could suffer from subjective bias. We mitigated this threat by employing dual independent human annotators and verifying high inter-rater agreement ($\kappa \ge 0.70$).
+\paragraph{External Validity} \textsf{BindBench} comprises 24 scenario families across 72 workflows. While diverse, these synthetic and pilot fixtures may not reflect the full complexity of wild multi-agent ecosystems.
+
+% TODO: [Empirical Study] Conduct an wild ecosystem study of open-source MCP servers to audit real-world tool contract completeness.

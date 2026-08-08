@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_rate_limit_lease",
+  "category": "value/availability",
+  "title": "Rate limit token check followed by token consumption",
+  "description": "A workflow inspects available rate-limit tokens then consumes tokens non-atomically.",
+  "resource": "bucket_id",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "rate_limit_lease.check_tokens_available",
+      "effect_contract": "rate_limit_lease.consume_tokens_unconditional",
+      "expected_result": "candidate_risk",
+      "mutation": "exhaust token bucket from parallel request",
+      "repair_obligation": "acquire token via atomic compare-and-decrement lease",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "rate_limit_lease.check_tokens_available",
+      "effect_contract": "rate_limit_lease.acquire_token_lease",
+      "expected_result": "protected",
+      "mutation": "exhaust token bucket from parallel request",
+      "repair_obligation": "atomic binding is authority-enforced",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "rate_limit_lease.check_tokens_available",
+      "effect_contract": "rate_limit_lease.acquire_token_lease",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify unrelated resource",
+      "repair_obligation": "no repair required because binding covers resource",
+      "representations": [
+        "langgraph_source"
+      ]
+    }
+  ]
+}

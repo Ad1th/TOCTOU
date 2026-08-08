@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "contract_id": "inventory_price_lock.get_cart_price",
+  "operation": "check",
+  "resource_argument": "cart_item",
+  "predicate": "price_acceptable",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_id": "pilot_symlink_resolution",
+  "category": "file/object identity",
+  "title": "Symlink safety check followed by path write",
+  "description": "A workflow verifies a symlink target path before opening and writing to it by path name.",
+  "resource": "path",
+  "variants": [
+    {
+      "kind": "vulnerable",
+      "check_contract": "symlink_resolution.check_symlink_target",
+      "effect_contract": "symlink_resolution.write_by_path",
+      "expected_result": "candidate_risk",
+      "mutation": "replace symlink target with restricted path before write",
+      "repair_obligation": "use stable file descriptor handle from checked target",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "repaired",
+      "check_contract": "symlink_resolution.check_symlink_target",
+      "effect_contract": "symlink_resolution.write_by_fd",
+      "expected_result": "protected",
+      "mutation": "replace symlink target with restricted path before write",
+      "repair_obligation": "stable_identity binding is authority-enforced",
+      "representations": [
+        "langgraph_source",
+        "mcp_trace"
+      ]
+    },
+    {
+      "kind": "safe_near_miss",
+      "check_contract": "symlink_resolution.check_symlink_target",
+      "effect_contract": "symlink_resolution.write_by_fd",
+      "expected_result": "safe_near_miss",
+      "mutation": "modify unrelated resource",
+      "repair_obligation": "no repair required because binding covers resource",
+      "representations": [
+        "langgraph_source"
+      ]
+    }
+  ]
+}

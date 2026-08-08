@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "async_job_join.fetch_results_under_lock",
+  "operation": "effect",
+  "resource_argument": "job_id",
+  "predicate": null,
+  "binding_mechanisms": [
+    "synchronization"
+  ],
+  "authority_behavior": "enforced",
+  "effect_category": "job_fetch",
+  "safety_oracle": "fetches_incomplete_job_data"
+}

@@ -1,0 +1,3 @@
+representation,call_fidelity,edge_fidelity,resource_fidelity,contract_fidelity,unknown_construct_rate
+langgraph_source,1.0,1.0,1.0,1.0,0.0
+mcp_trace,1.0,1.0,1.0,1.0,0.0

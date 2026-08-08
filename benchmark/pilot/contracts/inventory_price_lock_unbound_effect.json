@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contract_id": "inventory_price_lock.checkout_unlocked",
+  "operation": "effect",
+  "resource_argument": "cart_item",
+  "predicate": null,
+  "binding_mechanisms": [
+    "none"
+  ],
+  "authority_behavior": "unknown",
+  "effect_category": "order_checkout",
+  "safety_oracle": "charges_unapproved_price"
+}

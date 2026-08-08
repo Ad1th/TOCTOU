@@ -1,0 +1,9 @@
+{
+  "expected_label": "safe_near_miss",
+  "family_id": "pilot_rate_limit_lease",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "safe_near_miss",
+  "workflow_id": "pilot_rate_limit_lease_safe_near_miss"
+}

@@ -1,0 +1,52 @@
+\documentclass[10pt,conference,compsocconf]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{AgentLint: Contract-Verified Detection and Repair of Check-Effect Binding Violations in LLM-Agent Workflows}
+
+\author{
+\IEEEauthorblockN{Anonymous Authors}
+\IEEEauthorblockA{\textit{IEEE Symposium on Security and Privacy (S\&P) Submission}}
+}
+
+\maketitle
+
+\begin{abstract}
+Autonomous Large Language Model (LLM) agents increasingly rely on multi-tool workflows to perform complex operational tasks, ranging from cloud infrastructure provisioning to automated financial transactions. However, when an agent checks a precondition on a mutable resource (e.g., verifying file permissions or validating account balances) and subsequently executes a side-effecting operation, an adversarial or dynamic environment may mutate the target resource within the check-effect window. This creates a Time-of-Check to Time-of-Use (TOCTOU) risk where precondition assertions fail to bind to the ultimate effect. Existing program analysis tools and taint-tracking frameworks cannot detect these vulnerabilities because they lack semantic knowledge of whether tool-level side effects enforce authority-backed precondition validity.
+
+In this paper, we introduce \textbf{AgentLint}, a contract-verified analysis framework for detecting and repairing check-effect binding violations in LLM-agent tool workflows. AgentLint formalizes agent execution using an Agent Workflow IR with Bindings (\textsf{AWIR-B}) and evaluates workflows against declarative tool contracts that model operation semantics, resource targets, and authority-enforced binding mechanisms (such as atomic transactions, ETags, and version checks). We introduce \textsf{BindBench}, a benchmark corpus comprising 24 scenario families across 72 workflow variants. Evaluated on \textsf{BindBench}, AgentLint achieves perfect detection accuracy ($F_1 = 1.0$, $100\%$ precision and recall), eliminating all 48 false positives produced by reachability-only baselines while incurring sub-millisecond static analysis latency ($< 0.001$\,s per workflow). Furthermore, AgentLint's dynamic witness engine confirms $100\%$ of flagged vulnerabilities under adversarial schedule mutation, and its repair obligation synthesizer eliminates all safety violations without compromising task completion rates.
+\end{abstract}
+
+\begin{IEEEkeywords}
+LLM Agents, TOCTOU, Check-Effect Bindings, Tool Safety, Program Analysis, Contract Verification.
+\end{IEEEkeywords}
+
+\input{sections/01_introduction}
+\input{sections/02_background}
+\input{sections/03_formalization}
+\input{sections/04_framework}
+\input{sections/05_methodology}
+\input{sections/06_results}
+\input{sections/07_discussion}
+\input{sections/08_related_work}
+\input{sections/09_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
