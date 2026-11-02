@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "k8s.get_deployment",
+  "operation": "check",
+  "predicate": "spec_expected",
+  "resource_argument": "name",
+  "schema_version": 1
+}

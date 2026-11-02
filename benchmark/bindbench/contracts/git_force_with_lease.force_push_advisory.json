@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "advisory",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "git_force_with_lease.force_push_advisory",
+  "effect_category": "ref_update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "ref_name",
+  "safety_oracle": "never_overwrites_unseen_commits",
+  "schema_version": 1,
+  "version_argument": "expected_sha"
+}

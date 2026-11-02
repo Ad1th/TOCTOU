@@ -1,2 +1,2 @@
 true_positives,false_positives,false_negatives,precision,recall,f1_score,total_workflows_analyzed,total_findings,total_runtime_seconds
-24,0,0,1.0,1.0,1.0,72,24,0.0009569120002197451
+40,0,0,1.0,1.0,1.0,120,40,0.0024172548146452755

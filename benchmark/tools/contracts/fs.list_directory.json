@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "fs.list_directory",
+  "operation": "read",
+  "predicate": null,
+  "resource_argument": "path",
+  "schema_version": 1
+}

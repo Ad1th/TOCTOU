@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "k8s_multi_object.get_object",
+  "operation": "check",
+  "predicate": "object_expected",
+  "resource_argument": "object_name",
+  "schema_version": 1
+}

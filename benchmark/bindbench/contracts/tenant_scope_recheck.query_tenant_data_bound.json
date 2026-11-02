@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "revalidation"
+  ],
+  "contract_id": "tenant_scope_recheck.query_tenant_data_bound",
+  "effect_category": "data_access",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "tenant_id",
+  "safety_oracle": "reads_only_in_scope",
+  "schema_version": 1
+}

@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "synchronization"
+  ],
+  "contract_id": "pg_advisory_lock.claim_job_bound",
+  "effect_category": "row_update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "row_id",
+  "safety_oracle": "claims_job_once",
+  "schema_version": 1
+}

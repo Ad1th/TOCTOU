@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "etcd_txn_multi.txn_put_bound",
+  "effect_category": "transaction",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "etcd_key",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1,
+  "version_argument": "mod_revision"
+}

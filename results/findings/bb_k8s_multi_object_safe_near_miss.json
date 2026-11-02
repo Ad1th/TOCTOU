@@ -1,0 +1,9 @@
+{
+  "expected_label": "safe_near_miss",
+  "family_id": "bb_k8s_multi_object",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "safe_near_miss",
+  "workflow_id": "bb_k8s_multi_object_safe_near_miss"
+}

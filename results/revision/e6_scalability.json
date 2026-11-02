@@ -1,0 +1,313 @@
+{
+  "rows": [
+    {
+      "edges": 99,
+      "findings": 38,
+      "impl": "v2",
+      "max_s": 0.00047095800982788205,
+      "median_s": 0.00046041602035984397,
+      "nodes": 100,
+      "peak_mib": 0.021564483642578125,
+      "resources": 14,
+      "topology": "chain"
+    },
+    {
+      "edges": 999,
+      "findings": 802,
+      "impl": "v2",
+      "max_s": 0.005613167013507336,
+      "median_s": 0.005592125002294779,
+      "nodes": 1000,
+      "peak_mib": 0.2721118927001953,
+      "resources": 54,
+      "topology": "chain"
+    },
+    {
+      "edges": 4999,
+      "findings": 4565,
+      "impl": "v2",
+      "max_s": 0.03268299999763258,
+      "median_s": 0.031762875005370006,
+      "nodes": 5000,
+      "peak_mib": 1.938736915588379,
+      "resources": 254,
+      "topology": "chain"
+    },
+    {
+      "edges": 9999,
+      "findings": 8421,
+      "impl": "v2",
+      "max_s": 0.06328158298856579,
+      "median_s": 0.06292429100722075,
+      "nodes": 10000,
+      "peak_mib": 4.480940818786621,
+      "resources": 504,
+      "topology": "chain"
+    },
+    {
+      "edges": 49999,
+      "findings": 43370,
+      "impl": "v2",
+      "max_s": 0.47828362497966737,
+      "median_s": 0.46807987499050796,
+      "nodes": 50000,
+      "peak_mib": 49.06820297241211,
+      "resources": 2504,
+      "topology": "chain"
+    },
+    {
+      "edges": 99999,
+      "findings": 87331,
+      "impl": "v2",
+      "max_s": 1.339532167010475,
+      "median_s": 1.2881501670053694,
+      "nodes": 100000,
+      "peak_mib": 187.50418853759766,
+      "resources": 5004,
+      "topology": "chain"
+    },
+    {
+      "edges": 251,
+      "findings": 28,
+      "impl": "v2",
+      "max_s": 0.0007979590154718608,
+      "median_s": 0.0005712079873774201,
+      "nodes": 100,
+      "peak_mib": 0.022006988525390625,
+      "resources": 14,
+      "topology": "layered"
+    },
+    {
+      "edges": 2840,
+      "findings": 383,
+      "impl": "v2",
+      "max_s": 0.005840249999891967,
+      "median_s": 0.005627916980301961,
+      "nodes": 1000,
+      "peak_mib": 0.21026611328125,
+      "resources": 54,
+      "topology": "layered"
+    },
+    {
+      "edges": 14642,
+      "findings": 446,
+      "impl": "v2",
+      "max_s": 0.024696832988411188,
+      "median_s": 0.02458925000973977,
+      "nodes": 5000,
+      "peak_mib": 1.2949485778808594,
+      "resources": 254,
+      "topology": "layered"
+    },
+    {
+      "edges": 29471,
+      "findings": 374,
+      "impl": "v2",
+      "max_s": 0.04986804199870676,
+      "median_s": 0.04946862501674332,
+      "nodes": 10000,
+      "peak_mib": 3.0042877197265625,
+      "resources": 504,
+      "topology": "layered"
+    },
+    {
+      "edges": 148940,
+      "findings": 361,
+      "impl": "v2",
+      "max_s": 0.40702608399442397,
+      "median_s": 0.3983507079828996,
+      "nodes": 50000,
+      "peak_mib": 49.301025390625,
+      "resources": 2504,
+      "topology": "layered"
+    },
+    {
+      "edges": 298317,
+      "findings": 347,
+      "impl": "v2",
+      "max_s": 0.9972817499947269,
+      "median_s": 0.986609417013824,
+      "nodes": 100000,
+      "peak_mib": 188.03124237060547,
+      "resources": 5004,
+      "topology": "layered"
+    },
+    {
+      "edges": 367,
+      "findings": 38,
+      "impl": "v2",
+      "max_s": 0.0006763330020476133,
+      "median_s": 0.0006571249978151172,
+      "nodes": 100,
+      "peak_mib": 0.021564483642578125,
+      "resources": 14,
+      "topology": "random_dag"
+    },
+    {
+      "edges": 3906,
+      "findings": 802,
+      "impl": "v2",
+      "max_s": 0.008036457991693169,
+      "median_s": 0.007880874996772036,
+      "nodes": 1000,
+      "peak_mib": 0.2759361267089844,
+      "resources": 54,
+      "topology": "random_dag"
+    },
+    {
+      "edges": 19689,
+      "findings": 4565,
+      "impl": "v2",
+      "max_s": 0.0443298330064863,
+      "median_s": 0.0441189170232974,
+      "nodes": 5000,
+      "peak_mib": 1.9605045318603516,
+      "resources": 254,
+      "topology": "random_dag"
+    },
+    {
+      "edges": 39426,
+      "findings": 8421,
+      "impl": "v2",
+      "max_s": 0.09194991699769162,
+      "median_s": 0.08914445800473914,
+      "nodes": 10000,
+      "peak_mib": 4.521095275878906,
+      "resources": 504,
+      "topology": "random_dag"
+    },
+    {
+      "edges": 197004,
+      "findings": 43370,
+      "impl": "v2",
+      "max_s": 0.6599377910024486,
+      "median_s": 0.6540159590076655,
+      "nodes": 50000,
+      "peak_mib": 49.230682373046875,
+      "resources": 2504,
+      "topology": "random_dag"
+    },
+    {
+      "edges": 394069,
+      "findings": 87331,
+      "impl": "v2",
+      "max_s": 1.5579326250008307,
+      "median_s": 1.5576032920216676,
+      "nodes": 100000,
+      "peak_mib": 187.9069709777832,
+      "resources": 5004,
+      "topology": "random_dag"
+    },
+    {
+      "edges": 256,
+      "findings": 74,
+      "impl": "v2",
+      "max_s": 0.0006840829737484455,
+      "median_s": 0.0006824999873060733,
+      "nodes": 100,
+      "peak_mib": 0.027492523193359375,
+      "resources": 14,
+      "topology": "cyclic"
+    },
+    {
+      "edges": 2890,
+      "findings": 1523,
+      "impl": "v2",
+      "max_s": 0.011930375010706484,
+      "median_s": 0.011874916992383078,
+      "nodes": 1000,
+      "peak_mib": 0.5628776550292969,
+      "resources": 54,
+      "topology": "cyclic"
+    },
+    {
+      "edges": 14892,
+      "findings": 8964,
+      "impl": "v2",
+      "max_s": 0.09677624999312684,
+      "median_s": 0.09662333299638703,
+      "nodes": 5000,
+      "peak_mib": 4.182209014892578,
+      "resources": 254,
+      "topology": "cyclic"
+    },
+    {
+      "edges": 29971,
+      "findings": 16220,
+      "impl": "v2",
+      "max_s": 0.2689155839907471,
+      "median_s": 0.25476308300858364,
+      "nodes": 10000,
+      "peak_mib": 13.352279663085938,
+      "resources": 504,
+      "topology": "cyclic"
+    },
+    {
+      "edges": 151440,
+      "findings": 86643,
+      "impl": "v2",
+      "max_s": 4.7006081659928896,
+      "median_s": 4.6579830840055365,
+      "nodes": 50000,
+      "peak_mib": 302.7484664916992,
+      "resources": 2504,
+      "topology": "cyclic"
+    },
+    {
+      "edges": 303317,
+      "findings": 173843,
+      "impl": "v2",
+      "max_s": 21.10085691700806,
+      "median_s": 20.566334208997432,
+      "nodes": 100000,
+      "peak_mib": 1193.2681617736816,
+      "resources": 5004,
+      "topology": "cyclic"
+    },
+    {
+      "edges": 251,
+      "impl": "v1",
+      "max_s": 0.02941554199787788,
+      "median_s": 0.02939262500149198,
+      "nodes": 100,
+      "topology": "layered",
+      "v1_findings": 4,
+      "v2_findings": 28,
+      "v2_median_s": 0.0005347089900169522
+    },
+    {
+      "edges": 651,
+      "impl": "v1",
+      "max_s": 0.32551316599710844,
+      "median_s": 0.3103210409753956,
+      "nodes": 250,
+      "topology": "layered",
+      "v1_findings": 0,
+      "v2_findings": 158,
+      "v2_median_s": 0.0016321660077665001
+    },
+    {
+      "edges": 1397,
+      "impl": "v1",
+      "max_s": 2.3650576250220183,
+      "median_s": 2.3650576250220183,
+      "nodes": 500,
+      "topology": "layered",
+      "v1_findings": 0,
+      "v2_findings": 309,
+      "v2_median_s": 0.003289709013188258
+    },
+    {
+      "edges": 2840,
+      "impl": "v1",
+      "max_s": 15.787450167001225,
+      "median_s": 15.787450167001225,
+      "nodes": 1000,
+      "topology": "layered",
+      "v1_findings": 0,
+      "v2_findings": 383,
+      "v2_median_s": 0.005909874977078289
+    }
+  ],
+  "trials": 3
+}

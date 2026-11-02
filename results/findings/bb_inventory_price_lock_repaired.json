@@ -1,0 +1,9 @@
+{
+  "expected_label": "protected",
+  "family_id": "bb_inventory_price_lock",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "repaired",
+  "workflow_id": "bb_inventory_price_lock_repaired"
+}

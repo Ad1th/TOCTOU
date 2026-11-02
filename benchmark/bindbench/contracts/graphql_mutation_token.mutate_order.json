@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "graphql_mutation_token.mutate_order",
+  "effect_category": "mutation",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "order_node",
+  "safety_oracle": "mutates_only_editable_orders",
+  "schema_version": 1
+}

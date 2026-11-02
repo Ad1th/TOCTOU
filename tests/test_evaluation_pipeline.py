@@ -26,13 +26,13 @@ class StepClock:
 
 
 def test_complete_evaluation_pipeline_writes_expected_artifacts(tmp_path: Path) -> None:
-    """The default pilot workflows run end-to-end and produce evaluation artifacts."""
+    """The default BindBench v2 workflows run end-to-end and produce evaluation artifacts."""
 
     metrics = run_evaluation(results_dir=tmp_path, clock=StepClock())
 
-    assert metrics.total_workflows_analyzed == 72
-    assert metrics.total_findings == 24
-    assert metrics.true_positives == 24
+    assert metrics.total_workflows_analyzed == 120
+    assert metrics.total_findings == 40
+    assert metrics.true_positives == 40
     assert metrics.false_positives == 0
     assert metrics.false_negatives == 0
     assert metrics.precision == 1.0
@@ -52,10 +52,10 @@ def test_finding_export_contains_structured_json(tmp_path: Path) -> None:
     run_evaluation(results_dir=tmp_path, clock=StepClock())
 
     finding_payload = json.loads(
-        (tmp_path / "findings/pilot_kv_version_vulnerable.json").read_text(encoding="utf-8")
+        (tmp_path / "findings/bb_kv_version_vulnerable.json").read_text(encoding="utf-8")
     )
 
-    assert finding_payload["workflow_id"] == "pilot_kv_version_vulnerable"
+    assert finding_payload["workflow_id"] == "bb_kv_version_vulnerable"
     assert finding_payload["expected_label"] == "candidate_risk"
     assert finding_payload["predicted_label"] == "candidate_risk"
     assert finding_payload["finding_count"] == 1
@@ -127,8 +127,8 @@ def test_evaluation_outputs_are_deterministic_with_fixed_clock(tmp_path: Path) -
         "metrics/summary.csv",
         "tables/summary.csv",
         "logs/experiment.log",
-        "findings/pilot_file_identity_vulnerable.json",
-        "findings/pilot_file_identity_repaired.json",
+        "findings/bb_file_identity_vulnerable.json",
+        "findings/bb_file_identity_repaired.json",
     )
     for relative_path in relative_paths:
         assert (first_dir / relative_path).read_text(encoding="utf-8") == (
@@ -139,8 +139,19 @@ def test_evaluation_outputs_are_deterministic_with_fixed_clock(tmp_path: Path) -
 def test_default_workflow_fixtures_load_all_pilot_cases() -> None:
     """The evaluation fixtures cover every pilot annotation case."""
 
-    contracts = load_contracts(PROJECT_ROOT / "benchmark/pilot/contracts")
-    cases = load_workflow_cases(PROJECT_ROOT / "examples/workflows", contracts)
+    contracts = load_contracts(PROJECT_ROOT / "benchmark/bindbench/contracts")
+    cases = load_workflow_cases(PROJECT_ROOT / "benchmark/bindbench/workflows", contracts)
 
-    assert len(cases) == 72
+    assert len(cases) == 120
     assert sorted({case.variant for case in cases}) == ["repaired", "safe_near_miss", "vulnerable"]
+
+
+def test_committed_bindbench_matches_generator(tmp_path: Path) -> None:
+    """The corpus on disk is exactly what the declarative generator produces."""
+
+    from agentlint.benchmark.bindbench import build
+
+    build(tmp_path)
+    for generated in sorted(tmp_path.rglob("*.json")):
+        committed = PROJECT_ROOT / "benchmark/bindbench" / generated.relative_to(tmp_path)
+        assert committed.read_text(encoding="utf-8") == generated.read_text(encoding="utf-8")

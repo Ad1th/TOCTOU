@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "payment_revalidation.capture_payment",
+  "effect_category": "capture",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "payment_id",
+  "safety_oracle": "captures_only_valid_authorization",
+  "schema_version": 1
+}

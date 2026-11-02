@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "http_etag.purchase_bound",
+  "effect_category": "purchase",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "item_url",
+  "safety_oracle": "pays_checked_price",
+  "schema_version": 1,
+  "version_argument": "if_match"
+}

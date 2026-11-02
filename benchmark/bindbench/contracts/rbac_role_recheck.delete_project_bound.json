@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "revalidation"
+  ],
+  "contract_id": "rbac_role_recheck.delete_project_bound",
+  "effect_category": "privileged_action",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "user_role",
+  "safety_oracle": "acts_only_with_role",
+  "schema_version": 1
+}

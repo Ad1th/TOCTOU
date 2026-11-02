@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "stable_identity"
+  ],
+  "contract_id": "s3.delete_object",
+  "effect_category": "deletion",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "Key",
+  "safety_oracle": "deletion_on_checked_state",
+  "schema_version": 1
+}

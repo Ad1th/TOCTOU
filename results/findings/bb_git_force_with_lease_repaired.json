@@ -1,0 +1,9 @@
+{
+  "expected_label": "protected",
+  "family_id": "bb_git_force_with_lease",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "repaired",
+  "workflow_id": "bb_git_force_with_lease_repaired"
+}

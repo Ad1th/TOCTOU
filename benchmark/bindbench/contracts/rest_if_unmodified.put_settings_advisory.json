@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "advisory",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "rest_if_unmodified.put_settings_advisory",
+  "effect_category": "update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "api_endpoint",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1,
+  "version_argument": "if_unmodified_since"
+}

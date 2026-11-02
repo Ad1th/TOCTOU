@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "github_pr_merge_sha.merge_pr_bound",
+  "effect_category": "merge",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "pull_request",
+  "safety_oracle": "merges_only_checked_head",
+  "schema_version": 1,
+  "version_argument": "sha"
+}

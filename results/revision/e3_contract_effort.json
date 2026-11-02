@@ -1,0 +1,828 @@
+{
+  "field_agreement_rate": {
+    "authority_behavior": 0.5652173913043478,
+    "binding_mechanisms": 0.8913043478260869,
+    "operation": 0.782608695652174,
+    "predicate": 0.717391304347826,
+    "resource_argument": 0.9347826086956522,
+    "version_argument": 1.0
+  },
+  "fully_inferred_tools": 13,
+  "mean_filled_fields": 6.760869565217392,
+  "mean_json_lines": 12.478260869565217,
+  "n_advisory": 1,
+  "n_bound_effects": 20,
+  "n_enforced": 19,
+  "n_services": 16,
+  "n_tools": 46,
+  "operations": {
+    "check": 13,
+    "effect": 27,
+    "read": 6
+  },
+  "per_tool": [
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 5,
+      "json_lines": 11,
+      "judgement_fields": [],
+      "operation": "read",
+      "tool": "github.get_pull_request"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "github.get_pull_request_status"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "github.merge_pull_request"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 5,
+      "json_lines": 11,
+      "judgement_fields": [],
+      "operation": "read",
+      "tool": "github.get_file_contents"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "github.create_or_update_file"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "github.delete_file"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 5,
+      "json_lines": 11,
+      "judgement_fields": [],
+      "operation": "read",
+      "tool": "fs.read_file"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "fs.get_file_info"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 5,
+      "json_lines": 11,
+      "judgement_fields": [],
+      "operation": "read",
+      "tool": "fs.list_directory"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [],
+      "operation": "effect",
+      "tool": "fs.write_file"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [],
+      "operation": "effect",
+      "tool": "fs.edit_file"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [],
+      "operation": "effect",
+      "tool": "fs.move_file"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "k8s.get_deployment"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "k8s.replace_deployment"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [],
+      "operation": "effect",
+      "tool": "k8s.patch_deployment"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "k8s.delete_deployment"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "s3.head_object"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 5,
+      "json_lines": 11,
+      "judgement_fields": [],
+      "operation": "read",
+      "tool": "s3.get_object"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "s3.put_object"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "s3.delete_object"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": false,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "s3.copy_object"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "ddb.get_item"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": false,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "ddb.update_item"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "gcs.objects_get"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "gcs.objects_insert"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "gcs.objects_delete"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "stripe.retrieve_payment_intent"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": false,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "stripe.capture_payment_intent"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": false,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "stripe.create_refund"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "redis.get"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [],
+      "operation": "effect",
+      "tool": "redis.set"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": false,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "redis.exec_watched"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "etcd.range"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": false,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "etcd.txn"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [],
+      "operation": "effect",
+      "tool": "etcd.put"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "consul.kv_get"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "consul.kv_put"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "es.get_doc"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": false,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "es.index_doc"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "azure.get_blob_properties"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "azure.put_blob"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [],
+      "operation": "effect",
+      "tool": "slack.chat_post_message"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": false,
+        "predicate": false,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 6,
+      "json_lines": 11,
+      "judgement_fields": [
+        "predicate"
+      ],
+      "operation": "check",
+      "tool": "git.ls_remote"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 5,
+      "filled_fields": 8,
+      "json_lines": 14,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "git.push_force_with_lease"
+    },
+    {
+      "agreement": {
+        "authority_behavior": false,
+        "binding_mechanisms": false,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 4,
+      "filled_fields": 7,
+      "json_lines": 13,
+      "judgement_fields": [
+        "authority_behavior"
+      ],
+      "operation": "effect",
+      "tool": "posix.flock_write"
+    },
+    {
+      "agreement": {
+        "authority_behavior": true,
+        "binding_mechanisms": true,
+        "operation": true,
+        "predicate": true,
+        "resource_argument": true,
+        "version_argument": true
+      },
+      "draft_correct_fields": 6,
+      "filled_fields": 5,
+      "json_lines": 11,
+      "judgement_fields": [],
+      "operation": "read",
+      "tool": "pg.query"
+    }
+  ],
+  "tools_needing_judgement": 33
+}

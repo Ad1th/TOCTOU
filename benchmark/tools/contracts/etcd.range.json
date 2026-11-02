@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "etcd.range",
+  "operation": "check",
+  "predicate": "value_expected",
+  "resource_argument": "key",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "github.get_pull_request_status",
+  "operation": "check",
+  "predicate": "checks_passed",
+  "resource_argument": "pull_number",
+  "schema_version": 1
+}

@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "oauth_token_introspection.call_protected_api",
+  "effect_category": "privileged_action",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "access_token",
+  "safety_oracle": "acts_only_with_active_token",
+  "schema_version": 1
+}

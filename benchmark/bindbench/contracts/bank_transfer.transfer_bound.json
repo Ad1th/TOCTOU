@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "bank_transfer.transfer_bound",
+  "effect_category": "transfer",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "account",
+  "safety_oracle": "no_overdraft_on_either_account",
+  "schema_version": 1,
+  "version_argument": "expected_version"
+}

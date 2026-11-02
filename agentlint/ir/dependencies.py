@@ -102,8 +102,8 @@ def propagate_dependencies(workflow: Workflow) -> DependencyGraph:
     for node in ordered_nodes:
         incoming_resources: list[PropagatedResource] = []
         incoming_bindings: list[PropagatedBinding] = []
-        for predecessor in workflow.predecessors(node.node_id):
-            predecessor_state = states[predecessor.node_id]
+        for predecessor_id in workflow.predecessor_ids(node.node_id):
+            predecessor_state = states[predecessor_id]
             incoming_resources.extend(predecessor_state.resources)
             incoming_bindings.extend(predecessor_state.bindings)
 

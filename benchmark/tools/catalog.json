@@ -1,0 +1,1312 @@
+{
+  "schema_version": 1,
+  "tools": [
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "github.get_pull_request",
+        "operation": "read",
+        "predicate": null,
+        "resource_argument": "pull_number",
+        "schema_version": 1
+      },
+      "description": "Get details of a pull request",
+      "doc": "https://docs.github.com/en/rest (pulls, repos/contents, checks)",
+      "judgement": null,
+      "name": "get_pull_request",
+      "parameters": [
+        "owner",
+        "repo",
+        "pull_number"
+      ],
+      "required": [
+        "owner",
+        "repo",
+        "pull_number"
+      ],
+      "service": "github"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "github.get_pull_request_status",
+        "operation": "check",
+        "predicate": "checks_passed",
+        "resource_argument": "pull_number",
+        "schema_version": 1
+      },
+      "description": "Get combined status checks for a pull request head",
+      "doc": "https://docs.github.com/en/rest (pulls, repos/contents, checks)",
+      "judgement": null,
+      "name": "get_pull_request_status",
+      "parameters": [
+        "owner",
+        "repo",
+        "pull_number"
+      ],
+      "required": [
+        "owner",
+        "repo",
+        "pull_number"
+      ],
+      "service": "github"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "github.merge_pull_request",
+        "effect_category": "merge",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "pull_number",
+        "safety_oracle": "merge_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "sha"
+      },
+      "description": "Merge a pull request",
+      "doc": "https://docs.github.com/en/rest (pulls, repos/contents, checks)",
+      "judgement": "409 when 'sha' does not match the head; binding only if the caller passes sha",
+      "name": "merge_pull_request",
+      "parameters": [
+        "owner",
+        "repo",
+        "pull_number",
+        "sha",
+        "merge_method",
+        "commit_title"
+      ],
+      "required": [
+        "owner",
+        "repo",
+        "pull_number"
+      ],
+      "service": "github"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "github.get_file_contents",
+        "operation": "read",
+        "predicate": null,
+        "resource_argument": "path",
+        "schema_version": 1
+      },
+      "description": "Get file or directory contents",
+      "doc": "https://docs.github.com/en/rest (pulls, repos/contents, checks)",
+      "judgement": null,
+      "name": "get_file_contents",
+      "parameters": [
+        "owner",
+        "repo",
+        "path",
+        "ref"
+      ],
+      "required": [
+        "owner",
+        "repo",
+        "path"
+      ],
+      "service": "github"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "github.create_or_update_file",
+        "effect_category": "file_write",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "path",
+        "safety_oracle": "file_write_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "sha"
+      },
+      "description": "Create or update a file",
+      "doc": "https://docs.github.com/en/rest (pulls, repos/contents, checks)",
+      "judgement": "409 when the blob sha of the replaced file is stale",
+      "name": "create_or_update_file",
+      "parameters": [
+        "owner",
+        "repo",
+        "path",
+        "content",
+        "message",
+        "branch",
+        "sha"
+      ],
+      "required": [
+        "owner",
+        "repo",
+        "path",
+        "content",
+        "message"
+      ],
+      "service": "github"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "github.delete_file",
+        "effect_category": "deletion",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "path",
+        "safety_oracle": "deletion_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "sha"
+      },
+      "description": "Delete a file",
+      "doc": "https://docs.github.com/en/rest (pulls, repos/contents, checks)",
+      "judgement": "409 on stale blob sha",
+      "name": "delete_file",
+      "parameters": [
+        "owner",
+        "repo",
+        "path",
+        "message",
+        "sha",
+        "branch"
+      ],
+      "required": [
+        "owner",
+        "repo",
+        "path",
+        "message",
+        "sha"
+      ],
+      "service": "github"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "fs.read_file",
+        "operation": "read",
+        "predicate": null,
+        "resource_argument": "path",
+        "schema_version": 1
+      },
+      "description": "Read the complete contents of a file",
+      "doc": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "judgement": null,
+      "name": "read_file",
+      "parameters": [
+        "path"
+      ],
+      "required": [
+        "path"
+      ],
+      "service": "fs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "fs.get_file_info",
+        "operation": "check",
+        "predicate": "file_attributes_acceptable",
+        "resource_argument": "path",
+        "schema_version": 1
+      },
+      "description": "Retrieve metadata (size, times, permissions) of a file",
+      "doc": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "judgement": null,
+      "name": "get_file_info",
+      "parameters": [
+        "path"
+      ],
+      "required": [
+        "path"
+      ],
+      "service": "fs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "fs.list_directory",
+        "operation": "read",
+        "predicate": null,
+        "resource_argument": "path",
+        "schema_version": 1
+      },
+      "description": "List directory entries",
+      "doc": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "judgement": null,
+      "name": "list_directory",
+      "parameters": [
+        "path"
+      ],
+      "required": [
+        "path"
+      ],
+      "service": "fs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "fs.write_file",
+        "effect_category": "file_write",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "path",
+        "safety_oracle": "file_write_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Create or overwrite a file",
+      "doc": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "judgement": "no precondition parameter; path re-resolved at write",
+      "name": "write_file",
+      "parameters": [
+        "path",
+        "content"
+      ],
+      "required": [
+        "path",
+        "content"
+      ],
+      "service": "fs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "fs.edit_file",
+        "effect_category": "file_write",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "path",
+        "safety_oracle": "file_write_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Apply line-based edits to a text file",
+      "doc": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "judgement": "edits are matched against current text, not a checked version",
+      "name": "edit_file",
+      "parameters": [
+        "path",
+        "edits",
+        "dryRun"
+      ],
+      "required": [
+        "path",
+        "edits"
+      ],
+      "service": "fs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "fs.move_file",
+        "effect_category": "rename",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "source",
+        "safety_oracle": "rename_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Move or rename a file",
+      "doc": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "judgement": null,
+      "name": "move_file",
+      "parameters": [
+        "source",
+        "destination"
+      ],
+      "required": [
+        "source",
+        "destination"
+      ],
+      "service": "fs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "k8s.get_deployment",
+        "operation": "check",
+        "predicate": "spec_expected",
+        "resource_argument": "name",
+        "schema_version": 1
+      },
+      "description": "Read a Deployment",
+      "doc": "https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions",
+      "judgement": null,
+      "name": "get_deployment",
+      "parameters": [
+        "name",
+        "namespace"
+      ],
+      "required": [
+        "name",
+        "namespace"
+      ],
+      "service": "k8s"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "k8s.replace_deployment",
+        "effect_category": "update",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "name",
+        "safety_oracle": "update_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "resourceVersion"
+      },
+      "description": "Replace a Deployment (PUT)",
+      "doc": "https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions",
+      "judgement": "409 Conflict when metadata.resourceVersion is stale",
+      "name": "replace_deployment",
+      "parameters": [
+        "name",
+        "namespace",
+        "body",
+        "resourceVersion"
+      ],
+      "required": [
+        "name",
+        "namespace",
+        "body"
+      ],
+      "service": "k8s"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "k8s.patch_deployment",
+        "effect_category": "update",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "name",
+        "safety_oracle": "update_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Merge-patch a Deployment",
+      "doc": "https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions",
+      "judgement": "merge patch without resourceVersion is applied unconditionally",
+      "name": "patch_deployment",
+      "parameters": [
+        "name",
+        "namespace",
+        "body"
+      ],
+      "required": [
+        "name",
+        "namespace",
+        "body"
+      ],
+      "service": "k8s"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "k8s.delete_deployment",
+        "effect_category": "deletion",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "name",
+        "safety_oracle": "deletion_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "preconditions"
+      },
+      "description": "Delete a Deployment",
+      "doc": "https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions",
+      "judgement": "preconditions.resourceVersion / uid enforced by the API server",
+      "name": "delete_deployment",
+      "parameters": [
+        "name",
+        "namespace",
+        "preconditions"
+      ],
+      "required": [
+        "name",
+        "namespace"
+      ],
+      "service": "k8s"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "s3.head_object",
+        "operation": "check",
+        "predicate": "object_is_expected",
+        "resource_argument": "Key",
+        "schema_version": 1
+      },
+      "description": "Retrieve object metadata",
+      "doc": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html",
+      "judgement": null,
+      "name": "head_object",
+      "parameters": [
+        "Bucket",
+        "Key",
+        "IfMatch"
+      ],
+      "required": [
+        "Bucket",
+        "Key"
+      ],
+      "service": "s3"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "s3.get_object",
+        "operation": "read",
+        "predicate": null,
+        "resource_argument": "Key",
+        "schema_version": 1
+      },
+      "description": "Retrieve an object",
+      "doc": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html",
+      "judgement": null,
+      "name": "get_object",
+      "parameters": [
+        "Bucket",
+        "Key",
+        "VersionId"
+      ],
+      "required": [
+        "Bucket",
+        "Key"
+      ],
+      "service": "s3"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "s3.put_object",
+        "effect_category": "overwrite",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "Key",
+        "safety_oracle": "overwrite_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "IfMatch"
+      },
+      "description": "Store an object",
+      "doc": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html",
+      "judgement": "412 on ETag mismatch (S3 conditional writes); not enforced by all S3-compatible stores",
+      "name": "put_object",
+      "parameters": [
+        "Bucket",
+        "Key",
+        "Body",
+        "IfMatch",
+        "IfNoneMatch"
+      ],
+      "required": [
+        "Bucket",
+        "Key",
+        "Body"
+      ],
+      "service": "s3"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "stable_identity"
+        ],
+        "contract_id": "s3.delete_object",
+        "effect_category": "deletion",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "Key",
+        "safety_oracle": "deletion_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Delete an object",
+      "doc": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html",
+      "judgement": "VersionId deletes exactly the checked version",
+      "name": "delete_object",
+      "parameters": [
+        "Bucket",
+        "Key",
+        "VersionId"
+      ],
+      "required": [
+        "Bucket",
+        "Key"
+      ],
+      "service": "s3"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "s3.copy_object",
+        "effect_category": "copy",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "CopySource",
+        "safety_oracle": "copy_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "CopySourceIfMatch"
+      },
+      "description": "Copy an object",
+      "doc": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html",
+      "judgement": "precondition covers the source only",
+      "name": "copy_object",
+      "parameters": [
+        "Bucket",
+        "Key",
+        "CopySource",
+        "CopySourceIfMatch"
+      ],
+      "required": [
+        "Bucket",
+        "Key",
+        "CopySource"
+      ],
+      "service": "s3"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "ddb.get_item",
+        "operation": "check",
+        "predicate": "item_state_acceptable",
+        "resource_argument": "Key",
+        "schema_version": 1
+      },
+      "description": "Read an item",
+      "doc": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html",
+      "judgement": null,
+      "name": "get_item",
+      "parameters": [
+        "TableName",
+        "Key",
+        "ConsistentRead"
+      ],
+      "required": [
+        "TableName",
+        "Key"
+      ],
+      "service": "ddb"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "atomic"
+        ],
+        "contract_id": "ddb.update_item",
+        "effect_category": "update",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "Key",
+        "safety_oracle": "update_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Update an item",
+      "doc": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html",
+      "judgement": "ConditionalCheckFailedException when ConditionExpression fails",
+      "name": "update_item",
+      "parameters": [
+        "TableName",
+        "Key",
+        "UpdateExpression",
+        "ConditionExpression"
+      ],
+      "required": [
+        "TableName",
+        "Key"
+      ],
+      "service": "ddb"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "gcs.objects_get",
+        "operation": "check",
+        "predicate": "object_is_expected",
+        "resource_argument": "object",
+        "schema_version": 1
+      },
+      "description": "Get object metadata",
+      "doc": "https://cloud.google.com/storage/docs/request-preconditions",
+      "judgement": null,
+      "name": "objects_get",
+      "parameters": [
+        "bucket",
+        "object"
+      ],
+      "required": [
+        "bucket",
+        "object"
+      ],
+      "service": "gcs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "gcs.objects_insert",
+        "effect_category": "overwrite",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "name",
+        "safety_oracle": "overwrite_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "ifGenerationMatch"
+      },
+      "description": "Upload an object",
+      "doc": "https://cloud.google.com/storage/docs/request-preconditions",
+      "judgement": "412 Precondition Failed on generation mismatch",
+      "name": "objects_insert",
+      "parameters": [
+        "bucket",
+        "name",
+        "ifGenerationMatch"
+      ],
+      "required": [
+        "bucket",
+        "name"
+      ],
+      "service": "gcs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "gcs.objects_delete",
+        "effect_category": "deletion",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "object",
+        "safety_oracle": "deletion_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "ifGenerationMatch"
+      },
+      "description": "Delete an object",
+      "doc": "https://cloud.google.com/storage/docs/request-preconditions",
+      "judgement": "412 on generation mismatch",
+      "name": "objects_delete",
+      "parameters": [
+        "bucket",
+        "object",
+        "ifGenerationMatch"
+      ],
+      "required": [
+        "bucket",
+        "object"
+      ],
+      "service": "gcs"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "stripe.retrieve_payment_intent",
+        "operation": "check",
+        "predicate": "requires_capture",
+        "resource_argument": "id",
+        "schema_version": 1
+      },
+      "description": "Retrieve a PaymentIntent",
+      "doc": "https://docs.stripe.com/api/payment_intents/capture",
+      "judgement": null,
+      "name": "retrieve_payment_intent",
+      "parameters": [
+        "id"
+      ],
+      "required": [
+        "id"
+      ],
+      "service": "stripe"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "revalidation"
+        ],
+        "contract_id": "stripe.capture_payment_intent",
+        "effect_category": "capture",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "id",
+        "safety_oracle": "capture_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Capture a PaymentIntent",
+      "doc": "https://docs.stripe.com/api/payment_intents/capture",
+      "judgement": "server rejects capture unless status is requires_capture",
+      "name": "capture_payment_intent",
+      "parameters": [
+        "id",
+        "amount_to_capture"
+      ],
+      "required": [
+        "id"
+      ],
+      "service": "stripe"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "revalidation"
+        ],
+        "contract_id": "stripe.create_refund",
+        "effect_category": "refund",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "payment_intent",
+        "safety_oracle": "refund_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Refund a charge",
+      "doc": "https://docs.stripe.com/api/payment_intents/capture",
+      "judgement": "server rejects amounts above the refundable balance",
+      "name": "create_refund",
+      "parameters": [
+        "payment_intent",
+        "amount"
+      ],
+      "required": [
+        "payment_intent"
+      ],
+      "service": "stripe"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "redis.get",
+        "operation": "check",
+        "predicate": "value_acceptable",
+        "resource_argument": "key",
+        "schema_version": 1
+      },
+      "description": "Get the value of a key",
+      "doc": "https://redis.io/docs/latest/develop/interact/transactions/",
+      "judgement": null,
+      "name": "get",
+      "parameters": [
+        "key"
+      ],
+      "required": [
+        "key"
+      ],
+      "service": "redis"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "redis.set",
+        "effect_category": "overwrite",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "key",
+        "safety_oracle": "overwrite_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Set the value of a key",
+      "doc": "https://redis.io/docs/latest/develop/interact/transactions/",
+      "judgement": "unconditional",
+      "name": "set",
+      "parameters": [
+        "key",
+        "value"
+      ],
+      "required": [
+        "key",
+        "value"
+      ],
+      "service": "redis"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "atomic"
+        ],
+        "contract_id": "redis.exec_watched",
+        "effect_category": "transaction",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "key",
+        "safety_oracle": "transaction_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "WATCH key; MULTI; ...; EXEC",
+      "doc": "https://redis.io/docs/latest/develop/interact/transactions/",
+      "judgement": "EXEC aborts if a watched key changed",
+      "name": "exec_watched",
+      "parameters": [
+        "key",
+        "commands"
+      ],
+      "required": [
+        "key",
+        "commands"
+      ],
+      "service": "redis"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "etcd.range",
+        "operation": "check",
+        "predicate": "value_expected",
+        "resource_argument": "key",
+        "schema_version": 1
+      },
+      "description": "Read a key",
+      "doc": "https://etcd.io/docs/v3.5/learning/api/#transaction",
+      "judgement": null,
+      "name": "range",
+      "parameters": [
+        "key"
+      ],
+      "required": [
+        "key"
+      ],
+      "service": "etcd"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "etcd.txn",
+        "effect_category": "transaction",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "key",
+        "safety_oracle": "transaction_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "compare"
+      },
+      "description": "Transaction guarded by compare predicates",
+      "doc": "https://etcd.io/docs/v3.5/learning/api/#transaction",
+      "judgement": "compare on mod_revision evaluated atomically; covers only compared keys",
+      "name": "txn",
+      "parameters": [
+        "key",
+        "compare",
+        "success",
+        "failure"
+      ],
+      "required": [
+        "compare",
+        "success"
+      ],
+      "service": "etcd"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "etcd.put",
+        "effect_category": "overwrite",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "key",
+        "safety_oracle": "overwrite_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Write a key",
+      "doc": "https://etcd.io/docs/v3.5/learning/api/#transaction",
+      "judgement": null,
+      "name": "put",
+      "parameters": [
+        "key",
+        "value"
+      ],
+      "required": [
+        "key",
+        "value"
+      ],
+      "service": "etcd"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "consul.kv_get",
+        "operation": "check",
+        "predicate": "value_expected",
+        "resource_argument": "key",
+        "schema_version": 1
+      },
+      "description": "Read a key",
+      "doc": "https://developer.hashicorp.com/consul/api-docs/kv",
+      "judgement": null,
+      "name": "kv_get",
+      "parameters": [
+        "key"
+      ],
+      "required": [
+        "key"
+      ],
+      "service": "consul"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "consul.kv_put",
+        "effect_category": "overwrite",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "key",
+        "safety_oracle": "overwrite_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "cas"
+      },
+      "description": "Write a key",
+      "doc": "https://developer.hashicorp.com/consul/api-docs/kv",
+      "judgement": "?cas=<ModifyIndex> returns false on mismatch",
+      "name": "kv_put",
+      "parameters": [
+        "key",
+        "value",
+        "cas"
+      ],
+      "required": [
+        "key",
+        "value"
+      ],
+      "service": "consul"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "es.get_doc",
+        "operation": "check",
+        "predicate": "doc_state_acceptable",
+        "resource_argument": "id",
+        "schema_version": 1
+      },
+      "description": "Get a document",
+      "doc": "https://www.elastic.co/guide/en/elasticsearch/reference/current/optimistic-concurrency-control.html",
+      "judgement": null,
+      "name": "get_doc",
+      "parameters": [
+        "index",
+        "id"
+      ],
+      "required": [
+        "index",
+        "id"
+      ],
+      "service": "es"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "es.index_doc",
+        "effect_category": "update",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "id",
+        "safety_oracle": "update_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "if_seq_no"
+      },
+      "description": "Index a document",
+      "doc": "https://www.elastic.co/guide/en/elasticsearch/reference/current/optimistic-concurrency-control.html",
+      "judgement": "409 version_conflict_engine_exception",
+      "name": "index_doc",
+      "parameters": [
+        "index",
+        "id",
+        "document",
+        "if_seq_no",
+        "if_primary_term"
+      ],
+      "required": [
+        "index",
+        "document"
+      ],
+      "service": "es"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "azure.get_blob_properties",
+        "operation": "check",
+        "predicate": "blob_is_expected",
+        "resource_argument": "blob",
+        "schema_version": 1
+      },
+      "description": "Get blob properties",
+      "doc": "https://learn.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations",
+      "judgement": null,
+      "name": "get_blob_properties",
+      "parameters": [
+        "container",
+        "blob"
+      ],
+      "required": [
+        "container",
+        "blob"
+      ],
+      "service": "azure"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "azure.put_blob",
+        "effect_category": "overwrite",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "blob",
+        "safety_oracle": "overwrite_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "if_match"
+      },
+      "description": "Upload a blob",
+      "doc": "https://learn.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations",
+      "judgement": "412 on ETag mismatch",
+      "name": "put_blob",
+      "parameters": [
+        "container",
+        "blob",
+        "body",
+        "if_match"
+      ],
+      "required": [
+        "container",
+        "blob",
+        "body"
+      ],
+      "service": "azure"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "slack.chat_post_message",
+        "effect_category": "notification",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "channel",
+        "safety_oracle": "notification_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Post a message",
+      "doc": "https://api.slack.com/methods/chat.postMessage",
+      "judgement": null,
+      "name": "chat_post_message",
+      "parameters": [
+        "channel",
+        "text",
+        "thread_ts"
+      ],
+      "required": [
+        "channel",
+        "text"
+      ],
+      "service": "slack"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "git.ls_remote",
+        "operation": "check",
+        "predicate": "ref_matches_review",
+        "resource_argument": "ref",
+        "schema_version": 1
+      },
+      "description": "Read a remote ref",
+      "doc": "https://git-scm.com/docs/git-push#Documentation/git-push.txt---force-with-leaseltrefnamegt",
+      "judgement": null,
+      "name": "ls_remote",
+      "parameters": [
+        "remote",
+        "ref"
+      ],
+      "required": [
+        "remote",
+        "ref"
+      ],
+      "service": "git"
+    },
+    {
+      "contract": {
+        "authority_behavior": "enforced",
+        "binding_mechanisms": [
+          "version"
+        ],
+        "contract_id": "git.push_force_with_lease",
+        "effect_category": "ref_update",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "ref",
+        "safety_oracle": "ref_update_on_checked_state",
+        "schema_version": 1,
+        "version_argument": "expect"
+      },
+      "description": "git push --force-with-lease[=ref:expect]",
+      "doc": "https://git-scm.com/docs/git-push#Documentation/git-push.txt---force-with-leaseltrefnamegt",
+      "judgement": "enforced only with an explicit expect; the implicit lease is the local remote-tracking ref, which a background fetch refreshes, so it is no binding",
+      "name": "push_force_with_lease",
+      "parameters": [
+        "remote",
+        "ref",
+        "expect"
+      ],
+      "required": [
+        "remote",
+        "ref"
+      ],
+      "service": "git"
+    },
+    {
+      "contract": {
+        "authority_behavior": "advisory",
+        "binding_mechanisms": [
+          "synchronization"
+        ],
+        "contract_id": "posix.flock_write",
+        "effect_category": "file_write",
+        "operation": "effect",
+        "predicate": null,
+        "resource_argument": "path",
+        "safety_oracle": "file_write_on_checked_state",
+        "schema_version": 1
+      },
+      "description": "Write a file while holding flock(LOCK_EX) on it",
+      "doc": "https://man7.org/linux/man-pages/man2/flock.2.html",
+      "judgement": "flock(2) locks are advisory: writers that do not call flock are not blocked",
+      "name": "flock_write",
+      "parameters": [
+        "path",
+        "content",
+        "lock"
+      ],
+      "required": [
+        "path",
+        "content"
+      ],
+      "service": "posix"
+    },
+    {
+      "contract": {
+        "authority_behavior": "unknown",
+        "binding_mechanisms": [
+          "none"
+        ],
+        "contract_id": "pg.query",
+        "operation": "read",
+        "predicate": null,
+        "resource_argument": "sql",
+        "schema_version": 1
+      },
+      "description": "Run a read-only SQL query",
+      "doc": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres",
+      "judgement": "resource is embedded in SQL text; contract cannot name a row",
+      "name": "query",
+      "parameters": [
+        "sql"
+      ],
+      "required": [
+        "sql"
+      ],
+      "service": "pg"
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "baselines": {
+    "B1": {
+      "counts": {
+        "all": {
+          "fn": 0,
+          "fp": 70,
+          "tn": 10,
+          "tp": 40
+        },
+        "extension": {
+          "fn": 0,
+          "fp": 28,
+          "tn": 4,
+          "tp": 16
+        },
+        "pilot": {
+          "fn": 0,
+          "fp": 42,
+          "tn": 6,
+          "tp": 24
+        }
+      },
+      "flagged_by_variant": {
+        "repaired": 40,
+        "safe_near_miss": 30,
+        "vulnerable": 40
+      },
+      "fp_by_near_miss": {
+        "different_resource": 12,
+        "effect_before_check": 9,
+        "exclusive_branch": 9
+      },
+      "metrics": {
+        "all": {
+          "f1": 0.5333333333333333,
+          "precision": 0.36363636363636365,
+          "recall": 1.0
+        },
+        "extension": {
+          "f1": 0.5333333333333333,
+          "precision": 0.36363636363636365,
+          "recall": 1.0
+        },
+        "pilot": {
+          "f1": 0.5333333333333333,
+          "precision": 0.36363636363636365,
+          "recall": 1.0
+        }
+      },
+      "missed_by_vuln_kind": {},
+      "name": "Ordered check-effect pair",
+      "runtime_seconds": 0.0004732919915113598
+    },
+    "B2": {
+      "counts": {
+        "all": {
+          "fn": 0,
+          "fp": 42,
+          "tn": 38,
+          "tp": 40
+        },
+        "extension": {
+          "fn": 0,
+          "fp": 18,
+          "tn": 14,
+          "tp": 16
+        },
+        "pilot": {
+          "fn": 0,
+          "fp": 24,
+          "tn": 24,
+          "tp": 24
+        }
+      },
+      "flagged_by_variant": {
+        "repaired": 40,
+        "safe_near_miss": 2,
+        "vulnerable": 40
+      },
+      "fp_by_near_miss": {
+        "different_resource": 2
+      },
+      "metrics": {
+        "all": {
+          "f1": 0.6557377049180327,
+          "precision": 0.4878048780487805,
+          "recall": 1.0
+        },
+        "extension": {
+          "f1": 0.6399999999999999,
+          "precision": 0.47058823529411764,
+          "recall": 1.0
+        },
+        "pilot": {
+          "f1": 0.6666666666666666,
+          "precision": 0.5,
+          "recall": 1.0
+        }
+      },
+      "missed_by_vuln_kind": {},
+      "name": "+ reachability and resource match",
+      "runtime_seconds": 0.0011515420046634972
+    },
+    "B3": {
+      "counts": {
+        "all": {
+          "fn": 14,
+          "fp": 0,
+          "tn": 80,
+          "tp": 26
+        },
+        "extension": {
+          "fn": 8,
+          "fp": 0,
+          "tn": 32,
+          "tp": 8
+        },
+        "pilot": {
+          "fn": 6,
+          "fp": 0,
+          "tn": 48,
+          "tp": 18
+        }
+      },
+      "flagged_by_variant": {
+        "repaired": 0,
+        "safe_near_miss": 0,
+        "vulnerable": 26
+      },
+      "fp_by_near_miss": {},
+      "metrics": {
+        "all": {
+          "f1": 0.787878787878788,
+          "precision": 1.0,
+          "recall": 0.65
+        },
+        "extension": {
+          "f1": 0.6666666666666666,
+          "precision": 1.0,
+          "recall": 0.5
+        },
+        "pilot": {
+          "f1": 0.8571428571428571,
+          "precision": 1.0,
+          "recall": 0.75
+        }
+      },
+      "missed_by_vuln_kind": {
+        "advisory": 9,
+        "mis_scoped": 5
+      },
+      "name": "+ binding presence",
+      "runtime_seconds": 0.0011207500065211207
+    },
+    "B3A": {
+      "counts": {
+        "all": {
+          "fn": 5,
+          "fp": 0,
+          "tn": 80,
+          "tp": 35
+        },
+        "extension": {
+          "fn": 5,
+          "fp": 0,
+          "tn": 32,
+          "tp": 11
+        },
+        "pilot": {
+          "fn": 0,
+          "fp": 0,
+          "tn": 48,
+          "tp": 24
+        }
+      },
+      "flagged_by_variant": {
+        "repaired": 0,
+        "safe_near_miss": 0,
+        "vulnerable": 35
+      },
+      "fp_by_near_miss": {},
+      "metrics": {
+        "all": {
+          "f1": 0.9333333333333333,
+          "precision": 1.0,
+          "recall": 0.875
+        },
+        "extension": {
+          "f1": 0.8148148148148148,
+          "precision": 1.0,
+          "recall": 0.6875
+        },
+        "pilot": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "missed_by_vuln_kind": {
+        "mis_scoped": 5
+      },
+      "name": "+ authority awareness",
+      "runtime_seconds": 0.00108879100298509
+    },
+    "B4": {
+      "counts": {
+        "all": {
+          "fn": 0,
+          "fp": 0,
+          "tn": 80,
+          "tp": 40
+        },
+        "extension": {
+          "fn": 0,
+          "fp": 0,
+          "tn": 32,
+          "tp": 16
+        },
+        "pilot": {
+          "fn": 0,
+          "fp": 0,
+          "tn": 48,
+          "tp": 24
+        }
+      },
+      "flagged_by_variant": {
+        "repaired": 0,
+        "safe_near_miss": 0,
+        "vulnerable": 40
+      },
+      "fp_by_near_miss": {},
+      "metrics": {
+        "all": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "extension": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "pilot": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "missed_by_vuln_kind": {},
+      "name": "AgentLint (+ effect-local, resource-scoped)",
+      "runtime_seconds": 0.0037780419806949794
+    }
+  },
+  "n_families": 40,
+  "n_workflows": 120
+}

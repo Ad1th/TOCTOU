@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "github.delete_file",
+  "effect_category": "deletion",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "path",
+  "safety_oracle": "deletion_on_checked_state",
+  "schema_version": 1,
+  "version_argument": "sha"
+}

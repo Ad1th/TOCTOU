@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "symlink_resolution.write_path",
+  "effect_category": "file_write",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "path",
+  "safety_oracle": "never_follows_swapped_link",
+  "schema_version": 1
+}

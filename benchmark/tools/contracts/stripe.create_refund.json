@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "revalidation"
+  ],
+  "contract_id": "stripe.create_refund",
+  "effect_category": "refund",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "payment_intent",
+  "safety_oracle": "refund_on_checked_state",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "queue_ack.inspect_message",
+  "operation": "check",
+  "predicate": "message_valid",
+  "resource_argument": "message_id",
+  "schema_version": 1
+}

@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "s3_copy_object.copy_object_bound",
+  "effect_category": "copy",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "s3_key",
+  "safety_oracle": "copies_checked_source_to_checked_destination",
+  "schema_version": 1,
+  "version_argument": "if_match"
+}

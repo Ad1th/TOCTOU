@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "container_image_digest.deploy_image",
+  "effect_category": "deployment",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "image_ref",
+  "safety_oracle": "deploys_only_scanned_image",
+  "schema_version": 1
+}

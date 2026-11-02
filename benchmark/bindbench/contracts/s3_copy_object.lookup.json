@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "s3_copy_object.lookup",
+  "operation": "read",
+  "predicate": null,
+  "resource_argument": "s3_key",
+  "schema_version": 1
+}

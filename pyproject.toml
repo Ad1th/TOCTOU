@@ -13,6 +13,11 @@ authors = [{ name = "AgentLint Contributors" }]
 dependencies = []
 
 [project.optional-dependencies]
+frontends = [
+  "langgraph==0.6.11",
+  "langchain-core==1.7.3",
+  "matplotlib==3.11.2",
+]
 dev = [
   "black>=24.10.0",
   "mypy>=1.13.0",
@@ -37,6 +42,13 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "C4", "SIM"]
 
+[tool.ruff.lint.per-file-ignores]
+# declarative data tables kept one entry per row (black is disabled for them with fmt: off)
+"agentlint/benchmark/tool_catalog.py" = ["E501"]
+"agentlint/benchmark/bindbench.py" = ["E501"]
+# tool parameters mirror the real APIs' names (Bucket, Key, IfMatch, resourceVersion, id)
+"examples/langgraph/tools.py" = ["N803", "A002"]
+
 [tool.ruff.lint.isort]
 known-first-party = ["agentlint"]
 
@@ -45,6 +57,15 @@ python_version = "3.12"
 strict = true
 files = ["agentlint", "experiments", "scripts", "tests"]
 warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+# demo applications: LangGraph's generic StateGraph stubs do not accept plain node callables
+module = ["examples.langgraph.*"]
+disable_error_code = ["type-arg", "arg-type", "index", "no-any-return"]
+
+[[tool.mypy.overrides]]
+module = ["langgraph.*", "langchain_core.*", "matplotlib.*"]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

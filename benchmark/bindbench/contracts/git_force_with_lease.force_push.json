@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "git_force_with_lease.force_push",
+  "effect_category": "ref_update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "ref_name",
+  "safety_oracle": "never_overwrites_unseen_commits",
+  "schema_version": 1
+}

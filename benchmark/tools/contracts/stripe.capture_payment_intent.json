@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "revalidation"
+  ],
+  "contract_id": "stripe.capture_payment_intent",
+  "effect_category": "capture",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "id",
+  "safety_oracle": "capture_on_checked_state",
+  "schema_version": 1
+}

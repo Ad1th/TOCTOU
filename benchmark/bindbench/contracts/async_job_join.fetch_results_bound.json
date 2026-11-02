@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "synchronization"
+  ],
+  "contract_id": "async_job_join.fetch_results_bound",
+  "effect_category": "job_fetch",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "job_id",
+  "safety_oracle": "no_partial_results",
+  "schema_version": 1
+}

@@ -45,6 +45,13 @@ class ResourceType(StrEnum):
     HTTP = "http"
     AUTHORITY = "authority"
     WORKFLOW = "workflow"
+    DATABASE = "database"
+    CLOUD_OBJECT = "cloud_object"
+    GIT = "git"
+    QUEUE = "queue"
+    CLUSTER = "cluster"
+    PAYMENT = "payment"
+    CHANNEL = "channel"
     UNKNOWN = "unknown"
 
 
@@ -56,6 +63,12 @@ class ResourceReference:
     argument_name: str
     resource_type: ResourceType = ResourceType.UNKNOWN
     identity: str | None = None
+
+    @property
+    def key(self) -> str:
+        """Canonical identity used to match a check and an effect on the same resource."""
+
+        return self.identity if self.identity is not None else self.resource_id
 
     def __post_init__(self) -> None:
         _require_identifier(self.resource_id, "resource_id")
@@ -72,11 +85,15 @@ class BindingReference:
     contract_id: str
     authority_enforced: bool
     description: str | None = None
+    resource_id: str | None = None
+    """Resource key the binding protects; ``None`` scopes it to every resource of its node."""
 
     def __post_init__(self) -> None:
         _require_identifier(self.contract_id, "contract_id")
         if self.description is not None:
             _require_identifier(self.description, "description")
+        if self.resource_id is not None:
+            _require_identifier(self.resource_id, "resource_id")
 
 
 @dataclass(frozen=True, slots=True)
@@ -145,6 +162,9 @@ class Workflow:
     workflow_id: str
     nodes: tuple[Node, ...]
     edges: tuple[Edge, ...] = field(default_factory=tuple)
+    _index: dict[str, int] = field(init=False, repr=False, compare=False, hash=False)
+    _preds: dict[str, tuple[str, ...]] = field(init=False, repr=False, compare=False, hash=False)
+    _succs: dict[str, tuple[str, ...]] = field(init=False, repr=False, compare=False, hash=False)
 
     def __post_init__(self) -> None:
         _require_identifier(self.workflow_id, "workflow_id")
@@ -174,27 +194,48 @@ class Workflow:
                 f"edge(s) reference unknown node(s): {', '.join(invalid_edges)}"
             )
 
-    def node(self, node_id: str) -> Node:
-        """Return a node by identifier."""
+        preds: dict[str, list[str]] = {node_id: [] for node_id in node_ids}
+        succs: dict[str, list[str]] = {node_id: [] for node_id in node_ids}
+        for edge in self.edges:
+            preds[edge.target_id].append(edge.source_id)
+            succs[edge.source_id].append(edge.target_id)
+        object.__setattr__(self, "_index", {node_id: i for i, node_id in enumerate(node_ids)})
+        object.__setattr__(self, "_preds", {k: tuple(v) for k, v in preds.items()})
+        object.__setattr__(self, "_succs", {k: tuple(v) for k, v in succs.items()})
 
-        for node in self.nodes:
-            if node.node_id == node_id:
-                return node
-        raise KeyError(node_id)
+    def node(self, node_id: str) -> Node:
+        """Return a node by identifier in O(1)."""
+
+        return self.nodes[self._index[node_id]]
+
+    def predecessor_ids(self, node_id: str) -> tuple[str, ...]:
+        """Return direct predecessor identifiers in deterministic edge order."""
+
+        return self._preds[node_id]
+
+    def successor_ids(self, node_id: str) -> tuple[str, ...]:
+        """Return direct successor identifiers in deterministic edge order."""
+
+        return self._succs[node_id]
 
     def predecessors(self, node_id: str) -> tuple[Node, ...]:
         """Return direct predecessor nodes in deterministic edge order."""
 
-        self.node(node_id)
-        predecessor_ids = [edge.source_id for edge in self.edges if edge.target_id == node_id]
-        return tuple(self.node(predecessor_id) for predecessor_id in predecessor_ids)
+        return tuple(self.node(predecessor_id) for predecessor_id in self._preds[node_id])
 
     def successors(self, node_id: str) -> tuple[Node, ...]:
         """Return direct successor nodes in deterministic edge order."""
 
-        self.node(node_id)
-        successor_ids = [edge.target_id for edge in self.edges if edge.source_id == node_id]
-        return tuple(self.node(successor_id) for successor_id in successor_ids)
+        return tuple(self.node(successor_id) for successor_id in self._succs[node_id])
+
+    def is_acyclic(self) -> bool:
+        """Return whether the workflow graph contains no directed cycle."""
+
+        try:
+            self.topological_order()
+        except GraphCycleError:
+            return False
+        return True
 
     def topological_order(self) -> tuple[Node, ...]:
         """Return a deterministic topological ordering for an acyclic workflow."""

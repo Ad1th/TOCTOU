@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "k8s.patch_deployment",
+  "effect_category": "update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "name",
+  "safety_oracle": "update_on_checked_state",
+  "schema_version": 1
+}

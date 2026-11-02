@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "ddb.get_item",
+  "operation": "check",
+  "predicate": "item_state_acceptable",
+  "resource_argument": "Key",
+  "schema_version": 1
+}

@@ -1,0 +1,9 @@
+{
+  "expected_label": "safe_near_miss",
+  "family_id": "bb_container_image_digest",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "safe_near_miss",
+  "workflow_id": "bb_container_image_digest_safe_near_miss"
+}

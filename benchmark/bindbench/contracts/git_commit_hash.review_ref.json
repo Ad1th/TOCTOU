@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "git_commit_hash.review_ref",
+  "operation": "check",
+  "predicate": "ref_approved",
+  "resource_argument": "ref_name",
+  "schema_version": 1
+}

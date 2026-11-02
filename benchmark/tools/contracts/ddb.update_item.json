@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "atomic"
+  ],
+  "contract_id": "ddb.update_item",
+  "effect_category": "update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "Key",
+  "safety_oracle": "update_on_checked_state",
+  "schema_version": 1
+}

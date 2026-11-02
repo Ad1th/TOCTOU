@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "atomic"
+  ],
+  "contract_id": "rate_limit_lease.consume_token_bound",
+  "effect_category": "consumption",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "bucket_id",
+  "safety_oracle": "never_exceeds_limit",
+  "schema_version": 1
+}

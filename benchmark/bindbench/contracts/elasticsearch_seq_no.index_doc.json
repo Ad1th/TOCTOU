@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "elasticsearch_seq_no.index_doc",
+  "effect_category": "update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "doc_id",
+  "safety_oracle": "updates_only_open_tickets",
+  "schema_version": 1
+}

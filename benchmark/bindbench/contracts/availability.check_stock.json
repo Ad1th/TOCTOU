@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "availability.check_stock",
+  "operation": "check",
+  "predicate": "stock_available",
+  "resource_argument": "sku",
+  "schema_version": 1
+}

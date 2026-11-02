@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "advisory",
+  "binding_mechanisms": [
+    "synchronization"
+  ],
+  "contract_id": "posix.flock_write",
+  "effect_category": "file_write",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "path",
+  "safety_oracle": "file_write_on_checked_state",
+  "schema_version": 1
+}

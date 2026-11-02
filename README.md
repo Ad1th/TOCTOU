@@ -45,6 +45,32 @@ python -m scripts.run_evaluation
 pytest
 ```
 
+## Reproducing the paper results
+
+Every table, figure and number in the paper is produced from this repository.
+
+```bash
+python -m pip install -e ".[dev,frontends]"   # frontends extra: LangGraph, LangChain, matplotlib
+python -m experiments.revision.run_all        # rebuild corpora, run E1-E6, regenerate figures + LaTeX macros
+```
+
+| Path | Content |
+| --- | --- |
+| `agentlint/ir/findings.py` | resource-keyed, effect-local, authority-confirmed analysis (bitset propagation, cycles) |
+| `agentlint/frontends/langgraph.py` | static LangGraph (`StateGraph` AST) and LangChain trace frontends |
+| `agentlint/dynamic/simulator.py` | dynamic schedule checker (random and systematic), no shared analysis code |
+| `agentlint/evaluation/baselines.py` | independently implemented baselines B1, B2, B3, B3A (+ B4 = AgentLint) |
+| `agentlint/benchmark/bindbench.py` | declarative BindBench v2 specification and generator (40 families) |
+| `agentlint/benchmark/tool_catalog.py` | 46 real tool APIs with hand-written contracts |
+| `agentlint/benchmark/benign.py` | seeded benign / injected-risk workflow generator over the tool catalog |
+| `agentlint/contracts/infer.py` | schema-only draft-contract inference (contract-effort study) |
+| `examples/langgraph/` | executable LangGraph `StateGraph` pipelines and ReAct agents |
+| `experiments/revision/` | E1-E6 and `make_paper_assets.py` (results in `results/revision/`) |
+| `paper/procedia/` | generated figures and LaTeX macros (`figures/`, `generated/`) written by `run_all` |
+
+`experiments/e1_detection` ... `experiments/e6_scalability` are the superseded pilot scaffolding
+from an earlier pilot and are kept only for history; `experiments/revision/` is authoritative.
+
 ## Experiment Template
 
 Run the template from the repository root:

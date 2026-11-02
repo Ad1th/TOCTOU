@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "cloud_generation.delete_object",
+  "effect_category": "deletion",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "object_name",
+  "safety_oracle": "deletes_only_checked_generation",
+  "schema_version": 1
+}

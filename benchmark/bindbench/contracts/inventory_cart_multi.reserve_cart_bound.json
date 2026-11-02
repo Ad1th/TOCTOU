@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "atomic"
+  ],
+  "contract_id": "inventory_cart_multi.reserve_cart_bound",
+  "effect_category": "reservation",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "sku",
+  "safety_oracle": "no_oversell_any_line",
+  "schema_version": 1
+}

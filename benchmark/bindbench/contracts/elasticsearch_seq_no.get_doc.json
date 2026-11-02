@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "elasticsearch_seq_no.get_doc",
+  "operation": "check",
+  "predicate": "ticket_open",
+  "resource_argument": "doc_id",
+  "schema_version": 1
+}

@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "es.index_doc",
+  "effect_category": "update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "id",
+  "safety_oracle": "update_on_checked_state",
+  "schema_version": 1,
+  "version_argument": "if_seq_no"
+}

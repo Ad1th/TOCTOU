@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "k8s_resource_version.replace_deployment",
+  "effect_category": "update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "deployment_name",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1
+}

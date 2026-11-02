@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "github.merge_pull_request",
+  "effect_category": "merge",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "pull_number",
+  "safety_oracle": "merge_on_checked_state",
+  "schema_version": 1,
+  "version_argument": "sha"
+}

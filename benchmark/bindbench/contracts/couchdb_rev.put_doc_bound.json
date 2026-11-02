@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "couchdb_rev.put_doc_bound",
+  "effect_category": "update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "doc_id",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1,
+  "version_argument": "rev"
+}

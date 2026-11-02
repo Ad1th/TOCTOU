@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "stable_identity"
+  ],
+  "contract_id": "file_identity.write_file_bound",
+  "effect_category": "file_write",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "path",
+  "safety_oracle": "writes_only_checked_object",
+  "schema_version": 1
+}

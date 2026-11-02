@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "s3_copy_object.head_object",
+  "operation": "check",
+  "predicate": "object_is_expected",
+  "resource_argument": "s3_key",
+  "schema_version": 1
+}

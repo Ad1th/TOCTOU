@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "etcd_txn_multi.txn_put",
+  "effect_category": "transaction",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "etcd_key",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1
+}

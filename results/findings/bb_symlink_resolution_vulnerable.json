@@ -1,0 +1,30 @@
+{
+  "expected_label": "candidate_risk",
+  "family_id": "bb_symlink_resolution",
+  "finding_count": 1,
+  "findings": [
+    {
+      "check_node_id": "check",
+      "effect_node_id": "effect",
+      "finding_id": "missing-check-effect-binding:bb_symlink_resolution_vulnerable:check:effect:/tmp/upload/latest",
+      "kind": "missing_check_effect_binding",
+      "location": {
+        "edge_id": null,
+        "node_id": "effect",
+        "source": null,
+        "workflow_id": "bb_symlink_resolution_vulnerable"
+      },
+      "missing_binding": "authority_enforced_check_effect_binding",
+      "repair_obligation_id": "bind_check_to_effect",
+      "resource": {
+        "argument_name": "path",
+        "identity": null,
+        "resource_id": "/tmp/upload/latest",
+        "resource_type": "file"
+      }
+    }
+  ],
+  "predicted_label": "candidate_risk",
+  "variant": "vulnerable",
+  "workflow_id": "bb_symlink_resolution_vulnerable"
+}

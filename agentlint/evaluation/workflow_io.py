@@ -113,6 +113,7 @@ def _binding(document: object) -> BindingReference:
         contract_id=_required_text(document, "contract_id"),
         authority_enforced=_required_bool(document, "authority_enforced"),
         description=_nullable_text(document, "description"),
+        resource_id=_nullable_text(document, "resource_id"),
     )
 
 

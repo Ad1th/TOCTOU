@@ -1,0 +1,30 @@
+{
+  "expected_label": "candidate_risk",
+  "family_id": "bb_rest_if_unmodified",
+  "finding_count": 1,
+  "findings": [
+    {
+      "check_node_id": "check",
+      "effect_node_id": "effect",
+      "finding_id": "missing-check-effect-binding:bb_rest_if_unmodified_vulnerable:check:effect:https://api.example/v1/settings",
+      "kind": "missing_check_effect_binding",
+      "location": {
+        "edge_id": null,
+        "node_id": "effect",
+        "source": null,
+        "workflow_id": "bb_rest_if_unmodified_vulnerable"
+      },
+      "missing_binding": "authority_enforced_check_effect_binding",
+      "repair_obligation_id": "bind_check_to_effect",
+      "resource": {
+        "argument_name": "api_endpoint",
+        "identity": null,
+        "resource_id": "https://api.example/v1/settings",
+        "resource_type": "http"
+      }
+    }
+  ],
+  "predicted_label": "candidate_risk",
+  "variant": "vulnerable",
+  "workflow_id": "bb_rest_if_unmodified_vulnerable"
+}

@@ -22,9 +22,9 @@ Clock = Callable[[], float]
 
 def run_evaluation(
     *,
-    workflows_path: Path = Path("examples/workflows"),
-    contracts_dir: Path = Path("benchmark/pilot/contracts"),
-    annotations_path: Path = Path("benchmark/pilot/annotations/annotator_a.json"),
+    workflows_path: Path = Path("benchmark/bindbench/workflows"),
+    contracts_dir: Path = Path("benchmark/bindbench/contracts"),
+    annotations_path: Path = Path("benchmark/bindbench/annotations/construction_labels.json"),
     results_dir: Path = Path("results"),
     clock: Clock = time.perf_counter,
 ) -> EvaluationMetrics:
@@ -68,12 +68,12 @@ def build_parser() -> argparse.ArgumentParser:
     """Create the evaluation command parser."""
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--workflows", type=Path, default=Path("examples/workflows"))
-    parser.add_argument("--contracts", type=Path, default=Path("benchmark/pilot/contracts"))
+    parser.add_argument("--workflows", type=Path, default=Path("benchmark/bindbench/workflows"))
+    parser.add_argument("--contracts", type=Path, default=Path("benchmark/bindbench/contracts"))
     parser.add_argument(
         "--annotations",
         type=Path,
-        default=Path("benchmark/pilot/annotations/annotator_a.json"),
+        default=Path("benchmark/bindbench/annotations/construction_labels.json"),
     )
     parser.add_argument("--results", type=Path, default=Path("results"))
     return parser

@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "file_identity.check_path_allowed",
+  "operation": "check",
+  "predicate": "path_allowed",
+  "resource_argument": "path",
+  "schema_version": 1
+}

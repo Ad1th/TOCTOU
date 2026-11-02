@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "stable_identity"
+  ],
+  "contract_id": "queue_ack.ack_message_bound",
+  "effect_category": "acknowledgement",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "message_id",
+  "safety_oracle": "acks_only_inspected_delivery",
+  "schema_version": 1
+}

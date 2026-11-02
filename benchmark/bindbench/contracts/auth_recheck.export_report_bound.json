@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "revalidation"
+  ],
+  "contract_id": "auth_recheck.export_report_bound",
+  "effect_category": "data_export",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "principal_resource",
+  "safety_oracle": "no_export_without_permission",
+  "schema_version": 1
+}

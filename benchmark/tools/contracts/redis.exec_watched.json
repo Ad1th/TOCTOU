@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "atomic"
+  ],
+  "contract_id": "redis.exec_watched",
+  "effect_category": "transaction",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "key",
+  "safety_oracle": "transaction_on_checked_state",
+  "schema_version": 1
+}

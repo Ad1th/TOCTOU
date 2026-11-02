@@ -1,0 +1,178 @@
+{
+  "baselines": {
+    "B1": {
+      "benign_fp_findings": 3006,
+      "benign_fp_rate": 0.87,
+      "benign_fp_workflows": 348,
+      "fp_workflows_containing_pattern": {
+        "P1": 113,
+        "P2": 135,
+        "P3": 136,
+        "P4": 136,
+        "P5": 136,
+        "P6": 152,
+        "P7": 117,
+        "P8": 140
+      },
+      "injected_detected": 100,
+      "injected_exactly_one_finding": 4,
+      "injected_recall": 1.0
+    },
+    "B2": {
+      "benign_fp_findings": 502,
+      "benign_fp_rate": 0.575,
+      "benign_fp_workflows": 230,
+      "fp_workflows_containing_pattern": {
+        "P1": 70,
+        "P2": 89,
+        "P3": 88,
+        "P4": 79,
+        "P5": 136,
+        "P6": 87,
+        "P7": 73,
+        "P8": 140
+      },
+      "injected_detected": 100,
+      "injected_exactly_one_finding": 36,
+      "injected_recall": 1.0
+    },
+    "B3": {
+      "benign_fp_findings": 0,
+      "benign_fp_rate": 0.0,
+      "benign_fp_workflows": 0,
+      "fp_workflows_containing_pattern": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0,
+        "P4": 0,
+        "P5": 0,
+        "P6": 0,
+        "P7": 0,
+        "P8": 0
+      },
+      "injected_detected": 95,
+      "injected_exactly_one_finding": 95,
+      "injected_recall": 0.95
+    },
+    "B3A": {
+      "benign_fp_findings": 0,
+      "benign_fp_rate": 0.0,
+      "benign_fp_workflows": 0,
+      "fp_workflows_containing_pattern": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0,
+        "P4": 0,
+        "P5": 0,
+        "P6": 0,
+        "P7": 0,
+        "P8": 0
+      },
+      "injected_detected": 100,
+      "injected_exactly_one_finding": 100,
+      "injected_recall": 1.0
+    },
+    "B4": {
+      "benign_fp_findings": 0,
+      "benign_fp_rate": 0.0,
+      "benign_fp_workflows": 0,
+      "fp_workflows_containing_pattern": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0,
+        "P4": 0,
+        "P5": 0,
+        "P6": 0,
+        "P7": 0,
+        "P8": 0
+      },
+      "injected_detected": 100,
+      "injected_exactly_one_finding": 100,
+      "injected_recall": 1.0
+    }
+  },
+  "cyclic_workflows": 181,
+  "n_benign": 400,
+  "n_injected": 100,
+  "nodes_max": 34,
+  "nodes_median": 15.0,
+  "nodes_min": 3,
+  "pattern_names": {
+    "P1": "Read-only pipeline",
+    "P2": "Effect without prior check",
+    "P3": "Check then read",
+    "P4": "Check A, effect on B",
+    "P5": "Authority-bound effect",
+    "P6": "Exclusive branches",
+    "P7": "Effect then audit check",
+    "P8": "Bound agent loop"
+  },
+  "pattern_workflow_counts": {
+    "P1": 131,
+    "P2": 154,
+    "P3": 154,
+    "P4": 136,
+    "P5": 136,
+    "P6": 152,
+    "P7": 132,
+    "P8": 140
+  },
+  "single_pattern_fp_rate": {
+    "P1": {
+      "B1": 0.0,
+      "B2": 0.0,
+      "B3": 0.0,
+      "B3A": 0.0,
+      "B4": 0.0
+    },
+    "P2": {
+      "B1": 0.0,
+      "B2": 0.0,
+      "B3": 0.0,
+      "B3A": 0.0,
+      "B4": 0.0
+    },
+    "P3": {
+      "B1": 0.0,
+      "B2": 0.0,
+      "B3": 0.0,
+      "B3A": 0.0,
+      "B4": 0.0
+    },
+    "P4": {
+      "B1": 1.0,
+      "B2": 0.0,
+      "B3": 0.0,
+      "B3A": 0.0,
+      "B4": 0.0
+    },
+    "P5": {
+      "B1": 1.0,
+      "B2": 1.0,
+      "B3": 0.0,
+      "B3A": 0.0,
+      "B4": 0.0
+    },
+    "P6": {
+      "B1": 1.0,
+      "B2": 0.0,
+      "B3": 0.0,
+      "B3A": 0.0,
+      "B4": 0.0
+    },
+    "P7": {
+      "B1": 0.0,
+      "B2": 0.0,
+      "B3": 0.0,
+      "B3A": 0.0,
+      "B4": 0.0
+    },
+    "P8": {
+      "B1": 1.0,
+      "B2": 1.0,
+      "B3": 0.0,
+      "B3A": 0.0,
+      "B4": 0.0
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "bank_transfer.read_balance",
+  "operation": "check",
+  "predicate": "balance_sufficient",
+  "resource_argument": "account",
+  "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "rbac_role_recheck.get_role",
+  "operation": "check",
+  "predicate": "role_is_admin",
+  "resource_argument": "user_role",
+  "schema_version": 1
+}

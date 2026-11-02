@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "revalidation"
+  ],
+  "contract_id": "oauth_token_introspection.call_protected_api_bound",
+  "effect_category": "privileged_action",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "access_token",
+  "safety_oracle": "acts_only_with_active_token",
+  "schema_version": 1
+}

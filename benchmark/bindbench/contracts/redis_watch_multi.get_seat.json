@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "redis_watch_multi.get_seat",
+  "operation": "check",
+  "predicate": "seat_free",
+  "resource_argument": "redis_key",
+  "schema_version": 1
+}

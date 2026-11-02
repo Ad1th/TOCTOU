@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "git_force_with_lease.inspect_remote_ref",
+  "operation": "check",
+  "predicate": "ref_matches_review",
+  "resource_argument": "ref_name",
+  "schema_version": 1
+}

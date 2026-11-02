@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "queue_ack.lookup",
+  "operation": "read",
+  "predicate": null,
+  "resource_argument": "message_id",
+  "schema_version": 1
+}

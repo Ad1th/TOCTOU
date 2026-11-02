@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "s3_object_version.put_object",
+  "effect_category": "overwrite",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "s3_key",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1
+}

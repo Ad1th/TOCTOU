@@ -1,0 +1,30 @@
+{
+  "expected_label": "candidate_risk",
+  "family_id": "bb_rbac_role_recheck",
+  "finding_count": 1,
+  "findings": [
+    {
+      "check_node_id": "check",
+      "effect_node_id": "effect",
+      "finding_id": "missing-check-effect-binding:bb_rbac_role_recheck_vulnerable:check:effect:rbac:bob",
+      "kind": "missing_check_effect_binding",
+      "location": {
+        "edge_id": null,
+        "node_id": "effect",
+        "source": null,
+        "workflow_id": "bb_rbac_role_recheck_vulnerable"
+      },
+      "missing_binding": "authority_enforced_check_effect_binding",
+      "repair_obligation_id": "bind_check_to_effect",
+      "resource": {
+        "argument_name": "user_role",
+        "identity": null,
+        "resource_id": "rbac:bob",
+        "resource_type": "authority"
+      }
+    }
+  ],
+  "predicted_label": "candidate_risk",
+  "variant": "vulnerable",
+  "workflow_id": "bb_rbac_role_recheck_vulnerable"
+}

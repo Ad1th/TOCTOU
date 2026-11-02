@@ -1,0 +1,9 @@
+{
+  "expected_label": "safe_near_miss",
+  "family_id": "bb_redis_watch_multi",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "safe_near_miss",
+  "workflow_id": "bb_redis_watch_multi_safe_near_miss"
+}

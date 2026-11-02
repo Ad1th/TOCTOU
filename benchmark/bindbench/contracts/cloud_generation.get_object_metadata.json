@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "cloud_generation.get_object_metadata",
+  "operation": "check",
+  "predicate": "object_is_expected",
+  "resource_argument": "object_name",
+  "schema_version": 1
+}

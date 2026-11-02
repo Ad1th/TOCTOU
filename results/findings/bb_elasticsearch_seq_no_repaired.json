@@ -1,0 +1,9 @@
+{
+  "expected_label": "protected",
+  "family_id": "bb_elasticsearch_seq_no",
+  "finding_count": 0,
+  "findings": [],
+  "predicted_label": "protected",
+  "variant": "repaired",
+  "workflow_id": "bb_elasticsearch_seq_no_repaired"
+}

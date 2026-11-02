@@ -1,0 +1,382 @@
+{
+  "dynamic_agreement": 24,
+  "label_agreement": 24,
+  "n_apps": 24,
+  "n_risky": 10,
+  "n_static": 14,
+  "n_trace": 10,
+  "rows": [
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "pr_merge_unbound",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "ci_check",
+          "merge",
+          "state['pr']"
+        ]
+      ],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0036133330140728503,
+      "n_nodes": 5,
+      "n_tool_nodes": 3,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "pr_merge_bound",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.002339375001611188,
+      "n_nodes": 5,
+      "n_tool_nodes": 3,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "k8s_scale_unbound",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "read_deploy",
+          "scale",
+          "state['name']"
+        ]
+      ],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.001874250010587275,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "k8s_scale_bound",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0017977079842239618,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "s3_config_unbound",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "head_cfg",
+          "put",
+          "state['key']"
+        ]
+      ],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0017571669886820018,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "s3_config_bound",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.001446374983061105,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "payment_capture",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.004072292009368539,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "file_cleanup",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "stat_and_write#0",
+          "stat_and_write#1",
+          "state['path']"
+        ]
+      ],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0011715829896274954,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "ledger_set",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "read_balance",
+          "debit",
+          "state['key']"
+        ]
+      ],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0013480829948093742,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "ledger_watched",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0012739169760607183,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "release_implicit_lease",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "inspect_ref",
+          "push",
+          "state['ref']"
+        ]
+      ],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0016698749968782067,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "release_explicit_lease",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0016695839876774698,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 0,
+      "app": "research_readonly",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0012489999935496598,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 0,
+      "app": "ci_report",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "static (StateGraph AST)",
+      "frontend_and_analysis_seconds": 0.0017560409905854613,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "agent_pr_merge_unbound",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "call1_0",
+          "call2_0",
+          "pull_number=7"
+        ]
+      ],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.00015979199088178575,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "agent_pr_merge_bound",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.00015108301886357367,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "agent_k8s_unbound",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "call1_0",
+          "call2_0",
+          "name=api"
+        ]
+      ],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.00016333299572579563,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "agent_k8s_bound",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.00017395801842212677,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "agent_consul_unbound",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "call1_0",
+          "call2_0",
+          "key=service/web/weight"
+        ]
+      ],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.00016754199168644845,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "agent_consul_cas",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.000152749998960644,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 0,
+      "app": "agent_s3_two_objects",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.0001236249809153378,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 1,
+      "app": "agent_file_write",
+      "benign_run_violations": 0,
+      "expected": "candidate_risk",
+      "findings": [
+        [
+          "call1_0",
+          "call2_0",
+          "path=/srv/tmp/x"
+        ]
+      ],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.00012458302080631256,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "candidate_risk"
+    },
+    {
+      "adversarial_rejections": 1,
+      "adversarial_violations": 0,
+      "app": "agent_payment",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.00012720900122076273,
+      "n_nodes": 4,
+      "n_tool_nodes": 2,
+      "predicted": "protected"
+    },
+    {
+      "adversarial_rejections": 0,
+      "adversarial_violations": 0,
+      "app": "agent_research",
+      "benign_run_violations": 0,
+      "expected": "protected",
+      "findings": [],
+      "frontend": "trace (create_react_agent)",
+      "frontend_and_analysis_seconds": 0.00011037499643862247,
+      "n_nodes": 5,
+      "n_tool_nodes": 3,
+      "predicted": "protected"
+    }
+  ]
+}

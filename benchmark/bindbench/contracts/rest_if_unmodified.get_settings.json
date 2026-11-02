@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "rest_if_unmodified.get_settings",
+  "operation": "check",
+  "predicate": "settings_expected",
+  "resource_argument": "api_endpoint",
+  "schema_version": 1
+}

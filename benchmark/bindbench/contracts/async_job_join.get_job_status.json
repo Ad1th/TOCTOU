@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "async_job_join.get_job_status",
+  "operation": "check",
+  "predicate": "job_completed",
+  "resource_argument": "job_id",
+  "schema_version": 1
+}

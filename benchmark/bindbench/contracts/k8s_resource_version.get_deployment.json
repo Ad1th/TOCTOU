@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "k8s_resource_version.get_deployment",
+  "operation": "check",
+  "predicate": "replicas_safe",
+  "resource_argument": "deployment_name",
+  "schema_version": 1
+}

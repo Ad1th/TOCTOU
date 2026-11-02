@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "dynamodb_conditional.update_item",
+  "effect_category": "conditional_update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "item_pk",
+  "safety_oracle": "never_exceeds_quota",
+  "schema_version": 1
+}

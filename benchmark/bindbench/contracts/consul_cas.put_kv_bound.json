@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "consul_cas.put_kv_bound",
+  "effect_category": "update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "consul_key",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1,
+  "version_argument": "cas_index"
+}

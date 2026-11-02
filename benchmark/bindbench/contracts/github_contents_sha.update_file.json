@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "github_contents_sha.update_file",
+  "effect_category": "file_write",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "file_path",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1
+}

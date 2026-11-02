@@ -9,3 +9,18 @@ dist/
 *.egg-info/
 coverage.xml
 htmlcov/
+
+# LaTeX build artifacts
+paper/procedia/*.aux
+paper/procedia/*.log
+paper/procedia/*.blg
+paper/procedia/*.out
+paper/procedia/*.spl
+paper/procedia/build.log
+paper/procedia/bib.log
+paper/procedia/missfont.log
+missfont.log
+
+# Manuscript sources and review material are kept out of the public repository
+paper/procedia/
+.DS_Store

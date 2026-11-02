@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "stable_identity"
+  ],
+  "contract_id": "git_commit_hash.deploy_ref_bound",
+  "effect_category": "deployment",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "ref_name",
+  "safety_oracle": "deploys_only_reviewed_commit",
+  "schema_version": 1
+}

@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "atomic"
+  ],
+  "contract_id": "redis_watch_multi.book_seat_bound",
+  "effect_category": "booking",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "redis_key",
+  "safety_oracle": "no_double_booking",
+  "schema_version": 1
+}

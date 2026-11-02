@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "synchronization"
+  ],
+  "contract_id": "workflow_control.complete_task_bound",
+  "effect_category": "completion",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "task_id",
+  "safety_oracle": "completes_ready_task_once",
+  "schema_version": 1
+}

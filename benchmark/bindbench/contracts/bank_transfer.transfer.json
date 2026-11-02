@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "bank_transfer.transfer",
+  "effect_category": "transfer",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "account",
+  "safety_oracle": "no_overdraft_on_either_account",
+  "schema_version": 1
+}

@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "azure_blob_etag.put_blob_bound",
+  "effect_category": "overwrite",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "blob_url",
+  "safety_oracle": "no_lost_update",
+  "schema_version": 1,
+  "version_argument": "if_match"
+}

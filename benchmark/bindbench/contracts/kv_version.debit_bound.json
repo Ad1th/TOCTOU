@@ -1,0 +1,14 @@
+{
+  "authority_behavior": "enforced",
+  "binding_mechanisms": [
+    "version"
+  ],
+  "contract_id": "kv_version.debit_bound",
+  "effect_category": "debit",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "key",
+  "safety_oracle": "no_overdraft",
+  "schema_version": 1,
+  "version_argument": "expected_version"
+}

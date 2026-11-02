@@ -1,0 +1,11 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "inventory_price_lock.lookup",
+  "operation": "read",
+  "predicate": null,
+  "resource_argument": "cart_item",
+  "schema_version": 1
+}

@@ -1,0 +1,13 @@
+{
+  "authority_behavior": "unknown",
+  "binding_mechanisms": [
+    "none"
+  ],
+  "contract_id": "db_row_version.update_order",
+  "effect_category": "row_update",
+  "operation": "effect",
+  "predicate": null,
+  "resource_argument": "row_id",
+  "safety_oracle": "updates_only_pending_rows",
+  "schema_version": 1
+}
